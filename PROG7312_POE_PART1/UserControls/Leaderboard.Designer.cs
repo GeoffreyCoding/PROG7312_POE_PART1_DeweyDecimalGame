@@ -34,6 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.orderGameBackground;
             this.MaximumSize = new System.Drawing.Size(1001, 513);
             this.MinimumSize = new System.Drawing.Size(1001, 513);
             this.Name = "Leaderboard";
