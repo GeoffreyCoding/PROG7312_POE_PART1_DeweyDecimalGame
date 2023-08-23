@@ -28,13 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainMenu));
             this.btn_OrderGame = new System.Windows.Forms.Button();
             this.btn_Leaderboard = new System.Windows.Forms.Button();
             this.btn_MatchColumns = new System.Windows.Forms.Button();
             this.btn_FindCallNumbers = new System.Windows.Forms.Button();
-            this.wmp_MusicPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-            ((System.ComponentModel.ISupportInitialize)(this.wmp_MusicPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_OrderGame
@@ -49,6 +46,8 @@
             this.btn_OrderGame.TabIndex = 0;
             this.btn_OrderGame.Text = "Order game";
             this.btn_OrderGame.UseVisualStyleBackColor = true;
+            this.btn_OrderGame.Click += new System.EventHandler(this.btn_OrderGame_Click);
+            this.btn_OrderGame.MouseEnter += new System.EventHandler(this.btn_OrderGame_MouseEnter);
             // 
             // btn_Leaderboard
             // 
@@ -62,6 +61,8 @@
             this.btn_Leaderboard.TabIndex = 1;
             this.btn_Leaderboard.Text = "Leaderboard";
             this.btn_Leaderboard.UseVisualStyleBackColor = true;
+            this.btn_Leaderboard.Click += new System.EventHandler(this.btn_Leaderboard_Click);
+            this.btn_Leaderboard.MouseEnter += new System.EventHandler(this.btn_OrderGame_MouseEnter);
             // 
             // btn_MatchColumns
             // 
@@ -75,6 +76,8 @@
             this.btn_MatchColumns.TabIndex = 2;
             this.btn_MatchColumns.Text = "Matching Game";
             this.btn_MatchColumns.UseVisualStyleBackColor = true;
+            this.btn_MatchColumns.Click += new System.EventHandler(this.btn_MatchColumns_Click);
+            this.btn_MatchColumns.MouseEnter += new System.EventHandler(this.btn_OrderGame_MouseEnter);
             // 
             // btn_FindCallNumbers
             // 
@@ -88,15 +91,8 @@
             this.btn_FindCallNumbers.TabIndex = 3;
             this.btn_FindCallNumbers.Text = "Find Numbers";
             this.btn_FindCallNumbers.UseVisualStyleBackColor = true;
-            // 
-            // wmp_MusicPlayer
-            // 
-            this.wmp_MusicPlayer.Enabled = true;
-            this.wmp_MusicPlayer.Location = new System.Drawing.Point(783, 464);
-            this.wmp_MusicPlayer.Name = "wmp_MusicPlayer";
-            this.wmp_MusicPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("wmp_MusicPlayer.OcxState")));
-            this.wmp_MusicPlayer.Size = new System.Drawing.Size(215, 46);
-            this.wmp_MusicPlayer.TabIndex = 4;
+            this.btn_FindCallNumbers.Click += new System.EventHandler(this.btn_FindCallNumbers_Click);
+            this.btn_FindCallNumbers.MouseEnter += new System.EventHandler(this.btn_OrderGame_MouseEnter);
             // 
             // mainMenu
             // 
@@ -104,7 +100,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.mainMenuBackground3;
-            this.Controls.Add(this.wmp_MusicPlayer);
             this.Controls.Add(this.btn_FindCallNumbers);
             this.Controls.Add(this.btn_MatchColumns);
             this.Controls.Add(this.btn_Leaderboard);
@@ -113,7 +108,6 @@
             this.MinimumSize = new System.Drawing.Size(1001, 513);
             this.Name = "mainMenu";
             this.Size = new System.Drawing.Size(1001, 513);
-            ((System.ComponentModel.ISupportInitialize)(this.wmp_MusicPlayer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -124,6 +118,5 @@
         private System.Windows.Forms.Button btn_Leaderboard;
         private System.Windows.Forms.Button btn_MatchColumns;
         private System.Windows.Forms.Button btn_FindCallNumbers;
-        private AxWMPLib.AxWindowsMediaPlayer wmp_MusicPlayer;
     }
 }

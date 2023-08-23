@@ -54,6 +54,7 @@
             this.pn_BookPlaceHolder3 = new System.Windows.Forms.Panel();
             this.pn_BookPlaceHolder2 = new System.Windows.Forms.Panel();
             this.pn_BookPlaceHolder1 = new System.Windows.Forms.Panel();
+            this.btn_OrderGame = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pb_GameProgression
@@ -242,11 +243,27 @@
             this.pn_BookPlaceHolder1.Size = new System.Drawing.Size(64, 112);
             this.pn_BookPlaceHolder1.TabIndex = 13;
             // 
+            // btn_OrderGame
+            // 
+            this.btn_OrderGame.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.mainMenuBtnBackgrounds;
+            this.btn_OrderGame.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_OrderGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_OrderGame.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_OrderGame.Location = new System.Drawing.Point(795, 463);
+            this.btn_OrderGame.Name = "btn_OrderGame";
+            this.btn_OrderGame.Size = new System.Drawing.Size(156, 35);
+            this.btn_OrderGame.TabIndex = 23;
+            this.btn_OrderGame.Text = "Back to Menu";
+            this.btn_OrderGame.UseVisualStyleBackColor = true;
+            this.btn_OrderGame.Click += new System.EventHandler(this.btn_OrderGame_Click);
+            this.btn_OrderGame.MouseHover += new System.EventHandler(this.btn_OrderGame_MouseHover);
+            // 
             // orderingGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.orderGameBackground;
+            this.Controls.Add(this.btn_OrderGame);
             this.Controls.Add(this.pn_BookPlaceHolder10);
             this.Controls.Add(this.pn_BookPlaceHolder9);
             this.Controls.Add(this.pn_BookPlaceHolder8);
@@ -307,5 +324,6 @@
         private System.Windows.Forms.Panel pn_BookPlaceHolder3;
         private System.Windows.Forms.Panel pn_BookPlaceHolder2;
         private System.Windows.Forms.Panel pn_BookPlaceHolder1;
+        private System.Windows.Forms.Button btn_OrderGame;
     }
 }

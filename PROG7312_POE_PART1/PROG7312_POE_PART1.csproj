@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Classes\callNumberObject.cs" />
     <Compile Include="Classes\DBHandler.cs" />
+    <Compile Include="Classes\mediaPlayer.cs" />
     <Compile Include="Classes\musicPlayerHandler.cs" />
     <Compile Include="Classes\Toolbox.cs" />
     <Compile Include="Forms\Form1.cs">
@@ -73,6 +74,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\AchievementPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AchievementPage.Designer.cs">
+      <DependentUpon>AchievementPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Leaderboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -104,6 +111,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\AchievementPage.resx">
+      <DependentUpon>AchievementPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Leaderboard.resx">
       <DependentUpon>Leaderboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +187,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
+    <Content Include="SoundAffects\buttonClick.wav" />
+    <Content Include="SoundAffects\buttonHover.wav" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

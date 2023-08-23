@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROG7312_POE_PART1.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,17 @@ namespace PROG7312_POE_PART1.UserControls
         public Leaderboard()
         {
             InitializeComponent();
+        }
+
+        private void btn_BackToMenu_Click(object sender, EventArgs e)
+        {
+            mediaPlayer.Instance.buttonClickSoundAffect();
+            Toolbox.Instance.ParentForm.loadMainMenu();
+        }
+
+        private void btn_BackToMenu_MouseEnter(object sender, EventArgs e)
+        {
+            mediaPlayer.Instance.buttonHoverSoundAffect();
         }
     }
 }
