@@ -8,5 +8,6 @@ namespace PROG7312_POE_PART1.Classes
 {
     internal class DBHandler
     {
+        
     }
 }

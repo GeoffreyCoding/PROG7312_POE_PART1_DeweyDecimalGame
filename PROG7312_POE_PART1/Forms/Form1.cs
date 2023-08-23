@@ -21,15 +21,11 @@ namespace PROG7312_POE_PART1
             Toolbox.Instance.ParentForm = this.FindForm() as Form1;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public void loadMainMenu()
         {
             orderingGame1.Visible = false;
             leaderboard1.Visible = false;
+            achievementPage1.Visible = false;
             mainMenu1.Visible = true;
         }
 
@@ -37,6 +33,7 @@ namespace PROG7312_POE_PART1
         {
             mainMenu1.Visible=false;
             leaderboard1.Visible = false;
+            achievementPage1.Visible = false;
             orderingGame1.Visible = true;
         }
 
@@ -44,7 +41,16 @@ namespace PROG7312_POE_PART1
         {
             mainMenu1.Visible = false;
             orderingGame1.Visible = false;
+            achievementPage1.Visible = false;
             leaderboard1.Visible = true;
+        }
+
+        public void loadAcheivementsPage()
+        {
+            mainMenu1.Visible = false;
+            orderingGame1.Visible = false;
+            leaderboard1.Visible = false;
+            achievementPage1.Visible = true;
         }
     }
 }

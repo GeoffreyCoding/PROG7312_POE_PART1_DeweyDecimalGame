@@ -32,6 +32,7 @@
             this.mainMenu1 = new PROG7312_POE_PART1.UserControls.mainMenu();
             this.orderingGame1 = new PROG7312_POE_PART1.UserControls.orderingGame();
             this.leaderboard1 = new PROG7312_POE_PART1.UserControls.Leaderboard();
+            this.achievementPage1 = new PROG7312_POE_PART1.UserControls.AchievementPage();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -67,11 +68,23 @@
             this.leaderboard1.TabIndex = 2;
             this.leaderboard1.Visible = false;
             // 
+            // achievementPage1
+            // 
+            this.achievementPage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("achievementPage1.BackgroundImage")));
+            this.achievementPage1.Location = new System.Drawing.Point(-2, 0);
+            this.achievementPage1.MaximumSize = new System.Drawing.Size(1001, 513);
+            this.achievementPage1.MinimumSize = new System.Drawing.Size(1001, 513);
+            this.achievementPage1.Name = "achievementPage1";
+            this.achievementPage1.Size = new System.Drawing.Size(1001, 513);
+            this.achievementPage1.TabIndex = 3;
+            this.achievementPage1.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 512);
+            this.Controls.Add(this.achievementPage1);
             this.Controls.Add(this.leaderboard1);
             this.Controls.Add(this.orderingGame1);
             this.Controls.Add(this.mainMenu1);
@@ -88,6 +101,7 @@
         private UserControls.mainMenu mainMenu1;
         private UserControls.orderingGame orderingGame1;
         private UserControls.Leaderboard leaderboard1;
+        private UserControls.AchievementPage achievementPage1;
     }
 }
 

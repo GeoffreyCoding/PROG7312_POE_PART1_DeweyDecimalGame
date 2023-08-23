@@ -64,7 +64,6 @@
     <Compile Include="Classes\callNumberObject.cs" />
     <Compile Include="Classes\DBHandler.cs" />
     <Compile Include="Classes\mediaPlayer.cs" />
-    <Compile Include="Classes\musicPlayerHandler.cs" />
     <Compile Include="Classes\Toolbox.cs" />
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>

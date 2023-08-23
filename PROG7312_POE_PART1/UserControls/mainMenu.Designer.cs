@@ -32,6 +32,7 @@
             this.btn_Leaderboard = new System.Windows.Forms.Button();
             this.btn_MatchColumns = new System.Windows.Forms.Button();
             this.btn_FindCallNumbers = new System.Windows.Forms.Button();
+            this.btn_Acheivements = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_OrderGame
@@ -94,12 +95,28 @@
             this.btn_FindCallNumbers.Click += new System.EventHandler(this.btn_FindCallNumbers_Click);
             this.btn_FindCallNumbers.MouseEnter += new System.EventHandler(this.btn_OrderGame_MouseEnter);
             // 
+            // btn_Acheivements
+            // 
+            this.btn_Acheivements.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.mainMenuBtnBackgrounds;
+            this.btn_Acheivements.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Acheivements.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Acheivements.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_Acheivements.Location = new System.Drawing.Point(373, 459);
+            this.btn_Acheivements.Name = "btn_Acheivements";
+            this.btn_Acheivements.Size = new System.Drawing.Size(156, 43);
+            this.btn_Acheivements.TabIndex = 4;
+            this.btn_Acheivements.Text = "Acheivments";
+            this.btn_Acheivements.UseVisualStyleBackColor = true;
+            this.btn_Acheivements.Click += new System.EventHandler(this.btn_Acheivements_Click);
+            this.btn_Acheivements.MouseEnter += new System.EventHandler(this.btn_OrderGame_MouseEnter);
+            // 
             // mainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.mainMenuBackground3;
+            this.Controls.Add(this.btn_Acheivements);
             this.Controls.Add(this.btn_FindCallNumbers);
             this.Controls.Add(this.btn_MatchColumns);
             this.Controls.Add(this.btn_Leaderboard);
@@ -118,5 +135,6 @@
         private System.Windows.Forms.Button btn_Leaderboard;
         private System.Windows.Forms.Button btn_MatchColumns;
         private System.Windows.Forms.Button btn_FindCallNumbers;
+        private System.Windows.Forms.Button btn_Acheivements;
     }
 }

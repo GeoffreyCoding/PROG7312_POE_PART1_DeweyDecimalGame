@@ -47,5 +47,11 @@ namespace PROG7312_POE_PART1.UserControls
             mediaPlayer.Instance.buttonClickSoundAffect();
             Toolbox.Instance.ParentForm.loadLeaderboard();
         }
+
+        private void btn_Acheivements_Click(object sender, EventArgs e)
+        {
+            mediaPlayer.Instance.buttonClickSoundAffect();
+            Toolbox.Instance.ParentForm.loadAcheivementsPage();
+        }
     }
 }
