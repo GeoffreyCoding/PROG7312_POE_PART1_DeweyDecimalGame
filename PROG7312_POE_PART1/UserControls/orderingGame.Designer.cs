@@ -34,27 +34,19 @@
             this.lb_GameTime = new System.Windows.Forms.Label();
             this.lb_FastestTime = new System.Windows.Forms.Label();
             this.lb_ScoreToBeat = new System.Windows.Forms.Label();
-            this.pn_Book1 = new System.Windows.Forms.Panel();
-            this.pn_Book2 = new System.Windows.Forms.Panel();
-            this.pn_Book3 = new System.Windows.Forms.Panel();
-            this.pn_Book4 = new System.Windows.Forms.Panel();
-            this.pn_Book5 = new System.Windows.Forms.Panel();
-            this.pn_Book6 = new System.Windows.Forms.Panel();
-            this.pn_Book7 = new System.Windows.Forms.Panel();
-            this.pn_Book8 = new System.Windows.Forms.Panel();
-            this.pn_Book9 = new System.Windows.Forms.Panel();
-            this.pn_Book10 = new System.Windows.Forms.Panel();
-            this.pn_BookPlaceHolder10 = new System.Windows.Forms.Panel();
-            this.pn_BookPlaceHolder9 = new System.Windows.Forms.Panel();
-            this.pn_BookPlaceHolder8 = new System.Windows.Forms.Panel();
-            this.pn_BookPlaceHolder7 = new System.Windows.Forms.Panel();
-            this.pn_BookPlaceHolder6 = new System.Windows.Forms.Panel();
-            this.pn_BookPlaceHolder5 = new System.Windows.Forms.Panel();
-            this.pn_BookPlaceHolder4 = new System.Windows.Forms.Panel();
-            this.pn_BookPlaceHolder3 = new System.Windows.Forms.Panel();
-            this.pn_BookPlaceHolder2 = new System.Windows.Forms.Panel();
-            this.pn_BookPlaceHolder1 = new System.Windows.Forms.Panel();
             this.btn_OrderGame = new System.Windows.Forms.Button();
+            this.pn_TopBook1 = new System.Windows.Forms.Panel();
+            this.pn_TopBook2 = new System.Windows.Forms.Panel();
+            this.pn_TopBook4 = new System.Windows.Forms.Panel();
+            this.pn_TopBook3 = new System.Windows.Forms.Panel();
+            this.pn_TopBook5 = new System.Windows.Forms.Panel();
+            this.pn_BottomBook1 = new System.Windows.Forms.Panel();
+            this.pn_BottomBook2 = new System.Windows.Forms.Panel();
+            this.btn_StartGame = new System.Windows.Forms.Button();
+            this.lb_BottomBook1 = new System.Windows.Forms.Label();
+            this.lb_TopBook1 = new System.Windows.Forms.Label();
+            this.pn_TopBook1.SuspendLayout();
+            this.pn_BottomBook1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pb_GameProgression
@@ -63,6 +55,10 @@
             this.pb_GameProgression.Name = "pb_GameProgression";
             this.pb_GameProgression.Size = new System.Drawing.Size(717, 25);
             this.pb_GameProgression.TabIndex = 0;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
             // 
             // lb_GameTime
             // 
@@ -73,9 +69,9 @@
             this.lb_GameTime.Image = global::PROG7312_POE_PART1.Properties.Resources.labelBackground;
             this.lb_GameTime.Location = new System.Drawing.Point(833, 15);
             this.lb_GameTime.Name = "lb_GameTime";
-            this.lb_GameTime.Size = new System.Drawing.Size(66, 25);
+            this.lb_GameTime.Size = new System.Drawing.Size(96, 25);
             this.lb_GameTime.TabIndex = 1;
-            this.lb_GameTime.Text = "00:00";
+            this.lb_GameTime.Text = "00:00:00";
             // 
             // lb_FastestTime
             // 
@@ -86,9 +82,9 @@
             this.lb_FastestTime.Image = global::PROG7312_POE_PART1.Properties.Resources.labelBackground;
             this.lb_FastestTime.Location = new System.Drawing.Point(176, 473);
             this.lb_FastestTime.Name = "lb_FastestTime";
-            this.lb_FastestTime.Size = new System.Drawing.Size(66, 25);
+            this.lb_FastestTime.Size = new System.Drawing.Size(96, 25);
             this.lb_FastestTime.TabIndex = 2;
-            this.lb_FastestTime.Text = "00:00";
+            this.lb_FastestTime.Text = "00:00:00";
             // 
             // lb_ScoreToBeat
             // 
@@ -102,146 +98,6 @@
             this.lb_ScoreToBeat.Size = new System.Drawing.Size(143, 25);
             this.lb_ScoreToBeat.TabIndex = 3;
             this.lb_ScoreToBeat.Text = "score to beat!";
-            // 
-            // pn_Book1
-            // 
-            this.pn_Book1.Location = new System.Drawing.Point(14, 282);
-            this.pn_Book1.Name = "pn_Book1";
-            this.pn_Book1.Size = new System.Drawing.Size(64, 116);
-            this.pn_Book1.TabIndex = 4;
-            // 
-            // pn_Book2
-            // 
-            this.pn_Book2.Location = new System.Drawing.Point(84, 282);
-            this.pn_Book2.Name = "pn_Book2";
-            this.pn_Book2.Size = new System.Drawing.Size(64, 116);
-            this.pn_Book2.TabIndex = 5;
-            // 
-            // pn_Book3
-            // 
-            this.pn_Book3.Location = new System.Drawing.Point(154, 282);
-            this.pn_Book3.Name = "pn_Book3";
-            this.pn_Book3.Size = new System.Drawing.Size(64, 116);
-            this.pn_Book3.TabIndex = 6;
-            // 
-            // pn_Book4
-            // 
-            this.pn_Book4.Location = new System.Drawing.Point(227, 282);
-            this.pn_Book4.Name = "pn_Book4";
-            this.pn_Book4.Size = new System.Drawing.Size(64, 116);
-            this.pn_Book4.TabIndex = 7;
-            // 
-            // pn_Book5
-            // 
-            this.pn_Book5.Location = new System.Drawing.Point(297, 282);
-            this.pn_Book5.Name = "pn_Book5";
-            this.pn_Book5.Size = new System.Drawing.Size(64, 116);
-            this.pn_Book5.TabIndex = 7;
-            // 
-            // pn_Book6
-            // 
-            this.pn_Book6.Location = new System.Drawing.Point(372, 282);
-            this.pn_Book6.Name = "pn_Book6";
-            this.pn_Book6.Size = new System.Drawing.Size(64, 116);
-            this.pn_Book6.TabIndex = 8;
-            // 
-            // pn_Book7
-            // 
-            this.pn_Book7.Location = new System.Drawing.Point(442, 282);
-            this.pn_Book7.Name = "pn_Book7";
-            this.pn_Book7.Size = new System.Drawing.Size(64, 116);
-            this.pn_Book7.TabIndex = 9;
-            // 
-            // pn_Book8
-            // 
-            this.pn_Book8.Location = new System.Drawing.Point(516, 282);
-            this.pn_Book8.Name = "pn_Book8";
-            this.pn_Book8.Size = new System.Drawing.Size(64, 116);
-            this.pn_Book8.TabIndex = 10;
-            // 
-            // pn_Book9
-            // 
-            this.pn_Book9.Location = new System.Drawing.Point(586, 282);
-            this.pn_Book9.Name = "pn_Book9";
-            this.pn_Book9.Size = new System.Drawing.Size(64, 116);
-            this.pn_Book9.TabIndex = 11;
-            // 
-            // pn_Book10
-            // 
-            this.pn_Book10.Location = new System.Drawing.Point(656, 282);
-            this.pn_Book10.Name = "pn_Book10";
-            this.pn_Book10.Size = new System.Drawing.Size(64, 116);
-            this.pn_Book10.TabIndex = 12;
-            // 
-            // pn_BookPlaceHolder10
-            // 
-            this.pn_BookPlaceHolder10.Location = new System.Drawing.Point(656, 89);
-            this.pn_BookPlaceHolder10.Name = "pn_BookPlaceHolder10";
-            this.pn_BookPlaceHolder10.Size = new System.Drawing.Size(64, 112);
-            this.pn_BookPlaceHolder10.TabIndex = 22;
-            // 
-            // pn_BookPlaceHolder9
-            // 
-            this.pn_BookPlaceHolder9.Location = new System.Drawing.Point(586, 89);
-            this.pn_BookPlaceHolder9.Name = "pn_BookPlaceHolder9";
-            this.pn_BookPlaceHolder9.Size = new System.Drawing.Size(64, 112);
-            this.pn_BookPlaceHolder9.TabIndex = 21;
-            // 
-            // pn_BookPlaceHolder8
-            // 
-            this.pn_BookPlaceHolder8.Location = new System.Drawing.Point(516, 89);
-            this.pn_BookPlaceHolder8.Name = "pn_BookPlaceHolder8";
-            this.pn_BookPlaceHolder8.Size = new System.Drawing.Size(64, 112);
-            this.pn_BookPlaceHolder8.TabIndex = 20;
-            // 
-            // pn_BookPlaceHolder7
-            // 
-            this.pn_BookPlaceHolder7.Location = new System.Drawing.Point(442, 89);
-            this.pn_BookPlaceHolder7.Name = "pn_BookPlaceHolder7";
-            this.pn_BookPlaceHolder7.Size = new System.Drawing.Size(64, 112);
-            this.pn_BookPlaceHolder7.TabIndex = 19;
-            // 
-            // pn_BookPlaceHolder6
-            // 
-            this.pn_BookPlaceHolder6.Location = new System.Drawing.Point(372, 89);
-            this.pn_BookPlaceHolder6.Name = "pn_BookPlaceHolder6";
-            this.pn_BookPlaceHolder6.Size = new System.Drawing.Size(64, 112);
-            this.pn_BookPlaceHolder6.TabIndex = 18;
-            // 
-            // pn_BookPlaceHolder5
-            // 
-            this.pn_BookPlaceHolder5.Location = new System.Drawing.Point(297, 89);
-            this.pn_BookPlaceHolder5.Name = "pn_BookPlaceHolder5";
-            this.pn_BookPlaceHolder5.Size = new System.Drawing.Size(64, 112);
-            this.pn_BookPlaceHolder5.TabIndex = 16;
-            // 
-            // pn_BookPlaceHolder4
-            // 
-            this.pn_BookPlaceHolder4.Location = new System.Drawing.Point(227, 89);
-            this.pn_BookPlaceHolder4.Name = "pn_BookPlaceHolder4";
-            this.pn_BookPlaceHolder4.Size = new System.Drawing.Size(64, 112);
-            this.pn_BookPlaceHolder4.TabIndex = 17;
-            // 
-            // pn_BookPlaceHolder3
-            // 
-            this.pn_BookPlaceHolder3.Location = new System.Drawing.Point(154, 89);
-            this.pn_BookPlaceHolder3.Name = "pn_BookPlaceHolder3";
-            this.pn_BookPlaceHolder3.Size = new System.Drawing.Size(64, 112);
-            this.pn_BookPlaceHolder3.TabIndex = 15;
-            // 
-            // pn_BookPlaceHolder2
-            // 
-            this.pn_BookPlaceHolder2.Location = new System.Drawing.Point(84, 89);
-            this.pn_BookPlaceHolder2.Name = "pn_BookPlaceHolder2";
-            this.pn_BookPlaceHolder2.Size = new System.Drawing.Size(64, 112);
-            this.pn_BookPlaceHolder2.TabIndex = 14;
-            // 
-            // pn_BookPlaceHolder1
-            // 
-            this.pn_BookPlaceHolder1.Location = new System.Drawing.Point(14, 89);
-            this.pn_BookPlaceHolder1.Name = "pn_BookPlaceHolder1";
-            this.pn_BookPlaceHolder1.Size = new System.Drawing.Size(64, 112);
-            this.pn_BookPlaceHolder1.TabIndex = 13;
             // 
             // btn_OrderGame
             // 
@@ -258,32 +114,129 @@
             this.btn_OrderGame.Click += new System.EventHandler(this.btn_OrderGame_Click);
             this.btn_OrderGame.MouseHover += new System.EventHandler(this.btn_OrderGame_MouseHover);
             // 
+            // pn_TopBook1
+            // 
+            this.pn_TopBook1.Controls.Add(this.lb_TopBook1);
+            this.pn_TopBook1.Location = new System.Drawing.Point(19, 70);
+            this.pn_TopBook1.MaximumSize = new System.Drawing.Size(64, 132);
+            this.pn_TopBook1.MinimumSize = new System.Drawing.Size(64, 132);
+            this.pn_TopBook1.Name = "pn_TopBook1";
+            this.pn_TopBook1.Size = new System.Drawing.Size(64, 132);
+            this.pn_TopBook1.TabIndex = 24;
+            this.pn_TopBook1.Tag = "target";
+            // 
+            // pn_TopBook2
+            // 
+            this.pn_TopBook2.Location = new System.Drawing.Point(93, 70);
+            this.pn_TopBook2.MaximumSize = new System.Drawing.Size(64, 132);
+            this.pn_TopBook2.MinimumSize = new System.Drawing.Size(64, 132);
+            this.pn_TopBook2.Name = "pn_TopBook2";
+            this.pn_TopBook2.Size = new System.Drawing.Size(64, 132);
+            this.pn_TopBook2.TabIndex = 25;
+            this.pn_TopBook2.Tag = "target";
+            // 
+            // pn_TopBook4
+            // 
+            this.pn_TopBook4.Location = new System.Drawing.Point(239, 70);
+            this.pn_TopBook4.MaximumSize = new System.Drawing.Size(64, 132);
+            this.pn_TopBook4.MinimumSize = new System.Drawing.Size(64, 132);
+            this.pn_TopBook4.Name = "pn_TopBook4";
+            this.pn_TopBook4.Size = new System.Drawing.Size(64, 132);
+            this.pn_TopBook4.TabIndex = 27;
+            this.pn_TopBook4.Tag = "target";
+            // 
+            // pn_TopBook3
+            // 
+            this.pn_TopBook3.Location = new System.Drawing.Point(166, 70);
+            this.pn_TopBook3.MaximumSize = new System.Drawing.Size(64, 132);
+            this.pn_TopBook3.MinimumSize = new System.Drawing.Size(64, 132);
+            this.pn_TopBook3.Name = "pn_TopBook3";
+            this.pn_TopBook3.Size = new System.Drawing.Size(64, 132);
+            this.pn_TopBook3.TabIndex = 26;
+            this.pn_TopBook3.Tag = "target";
+            // 
+            // pn_TopBook5
+            // 
+            this.pn_TopBook5.Location = new System.Drawing.Point(309, 70);
+            this.pn_TopBook5.MaximumSize = new System.Drawing.Size(64, 132);
+            this.pn_TopBook5.MinimumSize = new System.Drawing.Size(64, 132);
+            this.pn_TopBook5.Name = "pn_TopBook5";
+            this.pn_TopBook5.Size = new System.Drawing.Size(64, 132);
+            this.pn_TopBook5.TabIndex = 28;
+            this.pn_TopBook5.Tag = "target";
+            // 
+            // pn_BottomBook1
+            // 
+            this.pn_BottomBook1.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.greenBook3;
+            this.pn_BottomBook1.Controls.Add(this.lb_BottomBook1);
+            this.pn_BottomBook1.Location = new System.Drawing.Point(19, 266);
+            this.pn_BottomBook1.MaximumSize = new System.Drawing.Size(64, 132);
+            this.pn_BottomBook1.MinimumSize = new System.Drawing.Size(64, 132);
+            this.pn_BottomBook1.Name = "pn_BottomBook1";
+            this.pn_BottomBook1.Size = new System.Drawing.Size(64, 132);
+            this.pn_BottomBook1.TabIndex = 25;
+            this.pn_BottomBook1.Tag = "draggable";
+            // 
+            // pn_BottomBook2
+            // 
+            this.pn_BottomBook2.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.brownBook;
+            this.pn_BottomBook2.Location = new System.Drawing.Point(93, 266);
+            this.pn_BottomBook2.MaximumSize = new System.Drawing.Size(64, 132);
+            this.pn_BottomBook2.MinimumSize = new System.Drawing.Size(64, 132);
+            this.pn_BottomBook2.Name = "pn_BottomBook2";
+            this.pn_BottomBook2.Size = new System.Drawing.Size(64, 132);
+            this.pn_BottomBook2.TabIndex = 26;
+            this.pn_BottomBook2.Tag = "draggable";
+            // 
+            // btn_StartGame
+            // 
+            this.btn_StartGame.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.mainMenuBtnBackgrounds;
+            this.btn_StartGame.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_StartGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_StartGame.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_StartGame.Location = new System.Drawing.Point(575, 463);
+            this.btn_StartGame.Name = "btn_StartGame";
+            this.btn_StartGame.Size = new System.Drawing.Size(156, 35);
+            this.btn_StartGame.TabIndex = 29;
+            this.btn_StartGame.Text = "Start Game!";
+            this.btn_StartGame.UseVisualStyleBackColor = true;
+            this.btn_StartGame.Click += new System.EventHandler(this.btn_StartGame_Click);
+            this.btn_StartGame.MouseHover += new System.EventHandler(this.btn_OrderGame_MouseHover);
+            // 
+            // lb_BottomBook1
+            // 
+            this.lb_BottomBook1.AutoSize = true;
+            this.lb_BottomBook1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_BottomBook1.Location = new System.Drawing.Point(7, 103);
+            this.lb_BottomBook1.Name = "lb_BottomBook1";
+            this.lb_BottomBook1.Size = new System.Drawing.Size(52, 16);
+            this.lb_BottomBook1.TabIndex = 0;
+            this.lb_BottomBook1.Text = "001.234";
+            // 
+            // lb_TopBook1
+            // 
+            this.lb_TopBook1.AutoSize = true;
+            this.lb_TopBook1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_TopBook1.Location = new System.Drawing.Point(7, 97);
+            this.lb_TopBook1.Name = "lb_TopBook1";
+            this.lb_TopBook1.Size = new System.Drawing.Size(52, 16);
+            this.lb_TopBook1.TabIndex = 1;
+            this.lb_TopBook1.Text = "000.000";
+            // 
             // orderingGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.orderGameBackground;
+            this.Controls.Add(this.btn_StartGame);
+            this.Controls.Add(this.pn_BottomBook2);
+            this.Controls.Add(this.pn_BottomBook1);
+            this.Controls.Add(this.pn_TopBook5);
+            this.Controls.Add(this.pn_TopBook4);
+            this.Controls.Add(this.pn_TopBook3);
+            this.Controls.Add(this.pn_TopBook2);
+            this.Controls.Add(this.pn_TopBook1);
             this.Controls.Add(this.btn_OrderGame);
-            this.Controls.Add(this.pn_BookPlaceHolder10);
-            this.Controls.Add(this.pn_BookPlaceHolder9);
-            this.Controls.Add(this.pn_BookPlaceHolder8);
-            this.Controls.Add(this.pn_BookPlaceHolder7);
-            this.Controls.Add(this.pn_BookPlaceHolder6);
-            this.Controls.Add(this.pn_BookPlaceHolder5);
-            this.Controls.Add(this.pn_BookPlaceHolder4);
-            this.Controls.Add(this.pn_BookPlaceHolder3);
-            this.Controls.Add(this.pn_BookPlaceHolder2);
-            this.Controls.Add(this.pn_BookPlaceHolder1);
-            this.Controls.Add(this.pn_Book10);
-            this.Controls.Add(this.pn_Book9);
-            this.Controls.Add(this.pn_Book8);
-            this.Controls.Add(this.pn_Book7);
-            this.Controls.Add(this.pn_Book6);
-            this.Controls.Add(this.pn_Book5);
-            this.Controls.Add(this.pn_Book4);
-            this.Controls.Add(this.pn_Book3);
-            this.Controls.Add(this.pn_Book2);
-            this.Controls.Add(this.pn_Book1);
             this.Controls.Add(this.lb_ScoreToBeat);
             this.Controls.Add(this.lb_FastestTime);
             this.Controls.Add(this.lb_GameTime);
@@ -292,6 +245,10 @@
             this.MinimumSize = new System.Drawing.Size(1001, 513);
             this.Name = "orderingGame";
             this.Size = new System.Drawing.Size(1001, 513);
+            this.pn_TopBook1.ResumeLayout(false);
+            this.pn_TopBook1.PerformLayout();
+            this.pn_BottomBook1.ResumeLayout(false);
+            this.pn_BottomBook1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,26 +261,16 @@
         private System.Windows.Forms.Label lb_GameTime;
         private System.Windows.Forms.Label lb_FastestTime;
         private System.Windows.Forms.Label lb_ScoreToBeat;
-        private System.Windows.Forms.Panel pn_Book1;
-        private System.Windows.Forms.Panel pn_Book2;
-        private System.Windows.Forms.Panel pn_Book3;
-        private System.Windows.Forms.Panel pn_Book4;
-        private System.Windows.Forms.Panel pn_Book5;
-        private System.Windows.Forms.Panel pn_Book6;
-        private System.Windows.Forms.Panel pn_Book7;
-        private System.Windows.Forms.Panel pn_Book8;
-        private System.Windows.Forms.Panel pn_Book9;
-        private System.Windows.Forms.Panel pn_Book10;
-        private System.Windows.Forms.Panel pn_BookPlaceHolder10;
-        private System.Windows.Forms.Panel pn_BookPlaceHolder9;
-        private System.Windows.Forms.Panel pn_BookPlaceHolder8;
-        private System.Windows.Forms.Panel pn_BookPlaceHolder7;
-        private System.Windows.Forms.Panel pn_BookPlaceHolder6;
-        private System.Windows.Forms.Panel pn_BookPlaceHolder5;
-        private System.Windows.Forms.Panel pn_BookPlaceHolder4;
-        private System.Windows.Forms.Panel pn_BookPlaceHolder3;
-        private System.Windows.Forms.Panel pn_BookPlaceHolder2;
-        private System.Windows.Forms.Panel pn_BookPlaceHolder1;
         private System.Windows.Forms.Button btn_OrderGame;
+        private System.Windows.Forms.Panel pn_TopBook1;
+        private System.Windows.Forms.Panel pn_TopBook2;
+        private System.Windows.Forms.Panel pn_TopBook4;
+        private System.Windows.Forms.Panel pn_TopBook3;
+        private System.Windows.Forms.Panel pn_TopBook5;
+        private System.Windows.Forms.Panel pn_BottomBook1;
+        private System.Windows.Forms.Panel pn_BottomBook2;
+        private System.Windows.Forms.Button btn_StartGame;
+        private System.Windows.Forms.Label lb_BottomBook1;
+        private System.Windows.Forms.Label lb_TopBook1;
     }
 }

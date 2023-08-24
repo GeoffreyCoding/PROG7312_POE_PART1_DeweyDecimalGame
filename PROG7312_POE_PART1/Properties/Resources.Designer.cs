@@ -63,6 +63,56 @@ namespace PROG7312_POE_PART1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap brownBook {
+            get {
+                object obj = ResourceManager.GetObject("brownBook", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenBook {
+            get {
+                object obj = ResourceManager.GetObject("greenBook", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenBook1 {
+            get {
+                object obj = ResourceManager.GetObject("greenBook1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenBook2 {
+            get {
+                object obj = ResourceManager.GetObject("greenBook2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap greenBook3 {
+            get {
+                object obj = ResourceManager.GetObject("greenBook3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap labelBackground {
             get {
                 object obj = ResourceManager.GetObject("labelBackground", resourceCulture);
@@ -96,6 +146,26 @@ namespace PROG7312_POE_PART1.Properties {
         internal static System.Drawing.Bitmap orderGameBackground {
             get {
                 object obj = ResourceManager.GetObject("orderGameBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yelloBook {
+            get {
+                object obj = ResourceManager.GetObject("yelloBook", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yelloBook1 {
+            get {
+                object obj = ResourceManager.GetObject("yelloBook1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

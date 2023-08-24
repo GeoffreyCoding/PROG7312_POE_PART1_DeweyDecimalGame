@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Media;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,31 +7,61 @@ namespace PROG7312_POE_PART1.Classes
 {
     internal class mediaPlayer
     {
-        // Private static instance of the class
+        //Private static instance of the class
         private static readonly mediaPlayer instance = new mediaPlayer();
-
-        // Public static method to return the instance
         public static mediaPlayer Instance => instance;
+        /// <summary>
+        /// These variables hold the sound player instances for each .wav file, this prevents
+        /// the code from having to constance initialzie a new instance of the SoundPlayer
+        /// overall it ensures  efficient use of resources and memroy management
+        /// </summary>
+        private SoundPlayer buttonHoverSoundPlayer;
+        private SoundPlayer buttonClickSoundPlayer;
+        private SoundPlayer gameClickSoundPlayer;
 
-        // Private constructor to ensure that no other instances can be created
-        private mediaPlayer() { }
-
+        /// <summary>
+        /// Private constructor to ensure that no other instances can be created
+        /// </summary>
+        private mediaPlayer()
+        {
+            buttonHoverSoundPlayer = InitializeSoundPlayer("buttonHover.wav");
+            buttonClickSoundPlayer = InitializeSoundPlayer("buttonClick.wav");
+            gameClickSoundPlayer = InitializeSoundPlayer("orderGameClick.wav");
+        }
+        /// <summary>
+        /// This code only runs once when the mediaPlayer is first initialized, it prevents the absolute paths to the 
+        /// .wav files from repeatedly being search for.
+        /// </summary>
+        private SoundPlayer InitializeSoundPlayer(string fileName)
+        {
+            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
+            string relativePath = Path.Combine(appPath, "..", "..", "SoundAffects", fileName);
+            string absolutePath = Path.GetFullPath(relativePath);
+            return new SoundPlayer(absolutePath);
+        }
+        /// <summary>
+        /// Task.Run() this peice of code was gotten from ChatGPT
+        /// The methods simply plays the sound by using the already initiazied variables
+        /// </summary>
         public void buttonHoverSoundAffect()
         {
-            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
-            string relativePath = Path.Combine(appPath, "..", "..", "SoundAffects", "buttonHover.wav");
-            string absolutePath = Path.GetFullPath(relativePath);
-            SoundPlayer soundPlayer = new SoundPlayer(absolutePath);
-            soundPlayer.Play();
+            Task.Run(() => buttonHoverSoundPlayer.Play());
         }
-
+        /// <summary>
+        /// Task.Run() this peice of code was gotten from ChatGPT
+        /// The methods simply plays the sound by using the already initiazied variables
+        /// </summary>
         public void buttonClickSoundAffect()
         {
-            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
-            string relativePath = Path.Combine(appPath, "..", "..", "SoundAffects", "buttonClick.wav");
-            string absolutePath = Path.GetFullPath(relativePath);
-            SoundPlayer soundPlayer = new SoundPlayer(absolutePath);
-            soundPlayer.Play();
+            Task.Run(() => buttonClickSoundPlayer.Play());
+        }
+        /// <summary>
+        /// Task.Run() this peice of code was gotten from ChatGPT
+        /// The methods simply plays the sound by using the already initiazied variables
+        /// </summary>
+        public void gameClickSoundAffect()
+        {
+            Task.Run(() => gameClickSoundPlayer.Play());
         }
     }
 }

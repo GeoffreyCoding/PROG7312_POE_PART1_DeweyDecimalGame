@@ -124,10 +124,31 @@
   <data name="mainMenuBackground3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\mainMenuBackground3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mainMenuBtnBackgrounds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\mainMenuBtnBackgrounds.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="greenBook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\greenBook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="labelBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\labelBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="greenBook2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\greenBook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="greenBook1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\greenBook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="brownBook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\brownBook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yelloBook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\yelloBook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainMenuBtnBackgrounds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\mainMenuBtnBackgrounds.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yelloBook1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\yelloBook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="greenBook3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\greenBook.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

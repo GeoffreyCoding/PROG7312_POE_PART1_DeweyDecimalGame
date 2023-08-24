@@ -61,8 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\acheivementTracker.cs" />
     <Compile Include="Classes\callNumberObject.cs" />
-    <Compile Include="Classes\DBHandler.cs" />
+    <Compile Include="Classes\leaderboardTracker.cs" />
     <Compile Include="Classes\mediaPlayer.cs" />
     <Compile Include="Classes\Toolbox.cs" />
     <Compile Include="Forms\Form1.cs">
@@ -73,6 +74,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AchievementPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -102,14 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UserControls\AchievementPage.resx">
       <DependentUpon>AchievementPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,17 +180,14 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\Database1.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="bin\Debug\Database1_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Database1.mdf</DependentUpon>
-    </Content>
+    <Content Include="Images\brownBook.png" />
+    <Content Include="Images\greenBook.png" />
     <Content Include="SoundAffects\buttonClick.wav" />
     <Content Include="SoundAffects\buttonHover.wav" />
+    <Content Include="SoundAffects\orderGameClick.wav" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
