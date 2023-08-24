@@ -1,21 +1,26 @@
 ﻿using PROG7312_POE_PART1.Classes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PROG7312_POE_PART1.UserControls
 {
     public partial class orderingGame : UserControl
     {
+        /// <summary>
+        /// dictionary which holds the original locations of all the panels with the "draggable" tag allocated to them
+        /// This was found on stack overflow
+        /// </summary>
         private Dictionary<Panel, Point> originalLocations = new Dictionary<Panel, Point>();
         private bool isDragging = false;
         private Panel activePanel = null;
+        /// <summary>
+        /// Simple list that holds the data of all the panels with the "target" tags allocated with them
+        /// This was given by ChatGPT
+        /// </summary>
         private List<Panel> targetPanels;
         private int elapsedTimeInSeconds = 0;
 
@@ -23,12 +28,14 @@ namespace PROG7312_POE_PART1.UserControls
         {
             InitializeComponent();
             InitializeTimer();
-            this.Load += orderingGame_Load;      
+            this.Load += orderingGame_Load;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void orderingGame_Load(object sender, EventArgs e)
         {
-            // Assuming all target panels have a specific tag (you can customize this part)
+            //finds all the panels with the "target" tag using a LinQ operation and puts in a list
             targetPanels = this.Controls.OfType<Panel>().Where(p => p.Tag != null && p.Tag.ToString() == "target").ToList();
             foreach (Panel panel in this.Controls.OfType<Panel>().Where(p => p.Tag != null && p.Tag.ToString() == "draggable"))
             {
@@ -49,6 +56,7 @@ namespace PROG7312_POE_PART1.UserControls
         }
         /// <summary>
         /// control the movement of the panel being dragged
+        /// I did get help with this from a post on StackOverflow
         /// </summary>
         private void GenericPanel_MouseMove(object sender, MouseEventArgs e)
         {
@@ -70,8 +78,9 @@ namespace PROG7312_POE_PART1.UserControls
                 if (activePanel.Bounds.IntersectsWith(targetPanel.Bounds))
                 {
                     targetPanel.BackgroundImage = activePanel.BackgroundImage;
-                    // Find the labels on both panels
+                    // Find the labels on bottom panels
                     Label draggedPanelLabel = activePanel.Controls.OfType<Label>().FirstOrDefault();
+                    // Find the labeels on the top panels
                     Label targetPanelLabel = targetPanel.Controls.OfType<Label>().FirstOrDefault();
                     // Update the text on the target panel's label
                     if (draggedPanelLabel != null && targetPanelLabel != null)
@@ -90,13 +99,14 @@ namespace PROG7312_POE_PART1.UserControls
         /// </summary>
         private void btn_OrderGame_MouseHover(object sender, EventArgs e)
         {
-             mediaPlayer.Instance.buttonHoverSoundAffect();
+            mediaPlayer.Instance.buttonHoverSoundAffect();
         }
         /// <summary>
         /// 
         /// </summary>
         private void btn_OrderGame_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             mediaPlayer.Instance.buttonClickSoundAffect();
             Toolbox.Instance.ParentForm.loadMainMenu();
         }
@@ -105,6 +115,7 @@ namespace PROG7312_POE_PART1.UserControls
         /// </summary>
         private void btn_StartGame_Click(object sender, EventArgs e)
         {
+            mediaPlayer.Instance.buttonClickSoundAffect();
             elapsedTimeInSeconds = 0; // Reset the elapsed time
             timer1.Start(); // Start the timer
         }
