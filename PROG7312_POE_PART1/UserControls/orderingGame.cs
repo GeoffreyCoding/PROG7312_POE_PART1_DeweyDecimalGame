@@ -31,12 +31,14 @@ namespace PROG7312_POE_PART1.UserControls
             this.Load += orderingGame_Load;
         }
         /// <summary>
-        /// 
+        ///  This method finds all the panels and sorts them into 2 different data structures depending on wether they have been allocated the 
+        ///  "target" tag or the "draggable" tag.
         /// </summary>
         private void orderingGame_Load(object sender, EventArgs e)
         {
             //finds all the panels with the "target" tag using a LinQ operation and puts in a list
             targetPanels = this.Controls.OfType<Panel>().Where(p => p.Tag != null && p.Tag.ToString() == "target").ToList();
+            //finds all the panels with the "draggable" tag using a LinQ operation and puts it in a list
             foreach (Panel panel in this.Controls.OfType<Panel>().Where(p => p.Tag != null && p.Tag.ToString() == "draggable"))
             {
                 originalLocations[panel] = panel.Location;

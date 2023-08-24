@@ -36,15 +36,15 @@
             this.lb_ScoreToBeat = new System.Windows.Forms.Label();
             this.btn_OrderGame = new System.Windows.Forms.Button();
             this.pn_TopBook1 = new System.Windows.Forms.Panel();
+            this.lb_TopBook1 = new System.Windows.Forms.Label();
             this.pn_TopBook2 = new System.Windows.Forms.Panel();
             this.pn_TopBook4 = new System.Windows.Forms.Panel();
             this.pn_TopBook3 = new System.Windows.Forms.Panel();
             this.pn_TopBook5 = new System.Windows.Forms.Panel();
             this.pn_BottomBook1 = new System.Windows.Forms.Panel();
+            this.lb_BottomBook1 = new System.Windows.Forms.Label();
             this.pn_BottomBook2 = new System.Windows.Forms.Panel();
             this.btn_StartGame = new System.Windows.Forms.Button();
-            this.lb_BottomBook1 = new System.Windows.Forms.Label();
-            this.lb_TopBook1 = new System.Windows.Forms.Label();
             this.pn_TopBook1.SuspendLayout();
             this.pn_BottomBook1.SuspendLayout();
             this.SuspendLayout();
@@ -125,6 +125,16 @@
             this.pn_TopBook1.TabIndex = 24;
             this.pn_TopBook1.Tag = "target";
             // 
+            // lb_TopBook1
+            // 
+            this.lb_TopBook1.AutoSize = true;
+            this.lb_TopBook1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_TopBook1.Location = new System.Drawing.Point(7, 97);
+            this.lb_TopBook1.Name = "lb_TopBook1";
+            this.lb_TopBook1.Size = new System.Drawing.Size(52, 16);
+            this.lb_TopBook1.TabIndex = 1;
+            this.lb_TopBook1.Text = "000.000";
+            // 
             // pn_TopBook2
             // 
             this.pn_TopBook2.Location = new System.Drawing.Point(93, 70);
@@ -177,6 +187,16 @@
             this.pn_BottomBook1.TabIndex = 25;
             this.pn_BottomBook1.Tag = "draggable";
             // 
+            // lb_BottomBook1
+            // 
+            this.lb_BottomBook1.AutoSize = true;
+            this.lb_BottomBook1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_BottomBook1.Location = new System.Drawing.Point(7, 103);
+            this.lb_BottomBook1.Name = "lb_BottomBook1";
+            this.lb_BottomBook1.Size = new System.Drawing.Size(52, 16);
+            this.lb_BottomBook1.TabIndex = 0;
+            this.lb_BottomBook1.Text = "001.234";
+            // 
             // pn_BottomBook2
             // 
             this.pn_BottomBook2.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.brownBook;
@@ -202,26 +222,6 @@
             this.btn_StartGame.UseVisualStyleBackColor = true;
             this.btn_StartGame.Click += new System.EventHandler(this.btn_StartGame_Click);
             this.btn_StartGame.MouseHover += new System.EventHandler(this.btn_OrderGame_MouseHover);
-            // 
-            // lb_BottomBook1
-            // 
-            this.lb_BottomBook1.AutoSize = true;
-            this.lb_BottomBook1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_BottomBook1.Location = new System.Drawing.Point(7, 103);
-            this.lb_BottomBook1.Name = "lb_BottomBook1";
-            this.lb_BottomBook1.Size = new System.Drawing.Size(52, 16);
-            this.lb_BottomBook1.TabIndex = 0;
-            this.lb_BottomBook1.Text = "001.234";
-            // 
-            // lb_TopBook1
-            // 
-            this.lb_TopBook1.AutoSize = true;
-            this.lb_TopBook1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_TopBook1.Location = new System.Drawing.Point(7, 97);
-            this.lb_TopBook1.Name = "lb_TopBook1";
-            this.lb_TopBook1.Size = new System.Drawing.Size(52, 16);
-            this.lb_TopBook1.TabIndex = 1;
-            this.lb_TopBook1.Text = "000.000";
             // 
             // orderingGame
             // 
