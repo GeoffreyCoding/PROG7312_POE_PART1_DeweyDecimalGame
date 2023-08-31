@@ -18,7 +18,7 @@ namespace PROG7312_POE_PART1.Classes
         private SoundPlayer buttonHoverSoundPlayer;
         private SoundPlayer buttonClickSoundPlayer;
         private SoundPlayer gameClickSoundPlayer;
-
+        private SoundPlayer errorSoundPlayer;
         /// <summary>
         /// Private constructor to ensure that no other instances can be created
         /// </summary>
@@ -27,6 +27,7 @@ namespace PROG7312_POE_PART1.Classes
             buttonHoverSoundPlayer = InitializeSoundPlayer("buttonHover.wav");
             buttonClickSoundPlayer = InitializeSoundPlayer("buttonClick.wav");
             gameClickSoundPlayer = InitializeSoundPlayer("orderGameClick.wav");
+            errorSoundPlayer = InitializeSoundPlayer("error_soundaffect.wav");
         }
         /// <summary>
         /// This code only runs once when the mediaPlayer is first initialized, it prevents the absolute paths to the 
@@ -62,6 +63,10 @@ namespace PROG7312_POE_PART1.Classes
         public void gameClickSoundAffect()
         {
             Task.Run(() => gameClickSoundPlayer.Play());
+        }
+        public void errorSoundAffect()
+        {
+            Task.Run(() => errorSoundPlayer.Play());
         }
     }
 }

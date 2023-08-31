@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,9 +31,9 @@ namespace PROG7312_POE_PART1.Classes
         /// asynchronous method which generates 10  dewey decimal classifications and then places them in a list, this list is then returned
         /// The hash map is only in place to prevent duplicate values as it matches values to keys and every key must be unique
         /// </summary>
-        public async Task<List<string>> GenerateUniqueDeweyDecimal()
+        public async Task<string[]> GenerateUniqueDeweyDecimal()
         {
-            List<string> deweyDecimals = new List<string>();
+            string[] deweyDecimals = new string[10];
 
             for (int i = 0; i < 10; i++)
             {
@@ -51,11 +52,35 @@ namespace PROG7312_POE_PART1.Classes
 
                 // Add the unique number to the set
                 generatedNumbers.Add(deweyDecimal);
-
-                deweyDecimals.Add(deweyDecimal);
+                deweyDecimals[i] = deweyDecimal;
             }
 
             return await Task.FromResult(deweyDecimals);
+        }
+        /// <summary>
+        /// checks that the panels with the "target" tag are in the correct order according to a pre-sorted array that already has the 
+        /// correct order of the dewey decimal classifications.
+        /// </summary>
+        /// <param name="targetPanels"></param>
+        /// <param name="correctOrder"></param>
+        /// <returns></returns>
+        public bool CheckPanelOrder(List<Panel> targetPanels, Panel panel, string[] correctOrder,Label draggedPanelLabel)
+        {
+            Label label = panel.Controls.OfType<Label>().FirstOrDefault();
+            if (label != null && !string.IsNullOrEmpty(label.Text) && !label.Text.Equals("000.000"))
+            {
+                string panelValue = draggedPanelLabel.Text;
+
+                // Find index of panel in targetPanels.
+                int panelIndex = targetPanels.IndexOf(panel);
+
+                // If the panel index is out of bounds for correctOrder, it's not in the correct position.
+                if (panelIndex >= correctOrder.Length) return false;
+
+                // Check if the panel's value matches what is in correctOrder.
+                return panelValue == correctOrder[panelIndex];
+            }
+            return false;
         }
 
     }
