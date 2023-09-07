@@ -138,7 +138,9 @@ namespace PROG7312_POE_PART1.UserControls
                 // handle specific exception
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private Panel FindMatchingTargetPanel()
         {
             foreach (var targetPanel in targetPanels)
@@ -150,7 +152,10 @@ namespace PROG7312_POE_PART1.UserControls
             }
             return null;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="matchedTargetPanel"></param>
         private void UpdateTargetPanel(Panel matchedTargetPanel)
         {
             if (matchedTargetPanel != null)
@@ -168,8 +173,11 @@ namespace PROG7312_POE_PART1.UserControls
                 }
             }
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="matchedTargetPanel"></param>
+        /// <param name="draggedPanelLabel"></param>
         private void checkIfPanelInCorrectPlace(Panel matchedTargetPanel, Label draggedPanelLabel)
         {
             if (matchedTargetPanel != null)
@@ -186,7 +194,9 @@ namespace PROG7312_POE_PART1.UserControls
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void checkIfGameWon()
         {
             if (pb_GameProgression.Value == 100)
