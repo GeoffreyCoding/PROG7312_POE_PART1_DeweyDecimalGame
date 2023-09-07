@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,8 +12,8 @@ namespace PROG7312_POE_PART1.Classes
         //holds the instance of form1
         private Form1 parentForm;
         // Set to hold the generated numbers to ensure uniqueness for the Dewey Decimal System
-        private  HashSet<string> generatedNumbers = new HashSet<string>();
-        private  Random random = new Random();
+        private HashSet<string> generatedNumbers = new HashSet<string>();
+        private Random random = new Random();
 
         // Private constructor ensures that no other instances can be created
         private Toolbox() { }
@@ -64,23 +62,28 @@ namespace PROG7312_POE_PART1.Classes
         /// <param name="targetPanels"></param>
         /// <param name="correctOrder"></param>
         /// <returns></returns>
-        public bool CheckPanelOrder(List<Panel> targetPanels, Panel panel, string[] correctOrder,Label draggedPanelLabel)
+        public bool CheckPanelOrder(List<Panel> targetPanels, Panel panel, string[] correctOrder, Label draggedPanelLabel)
         {
-            Label label = panel.Controls.OfType<Label>().FirstOrDefault();
-            if (label != null && !string.IsNullOrEmpty(label.Text) && !label.Text.Equals("000.000"))
+            try
             {
-                string panelValue = draggedPanelLabel.Text;
+                Label label = panel.Controls.OfType<Label>().FirstOrDefault();
+                if (label != null && !string.IsNullOrEmpty(label.Text) && !label.Text.Equals("000.000"))
+                {
+                    string panelValue = draggedPanelLabel.Text;
 
-                // Find index of panel in targetPanels.
-                int panelIndex = targetPanels.IndexOf(panel);
+                    // Find index of panel in targetPanels.
+                    int panelIndex = targetPanels.IndexOf(panel);
 
-                // If the panel index is out of bounds for correctOrder, it's not in the correct position.
-                if (panelIndex >= correctOrder.Length) return false;
+                    // If the panel index is out of bounds for correctOrder, it's not in the correct position.
+                    if (panelIndex >= correctOrder.Length) return false;
 
-                // Check if the panel's value matches what is in correctOrder.
-                return panelValue == correctOrder[panelIndex];
+                    // Check if the panel's value matches what is in correctOrder.
+                    return panelValue == correctOrder[panelIndex];
+                }
+                return false;
             }
-            return false;
+            catch(Exception ex) { return false; }
+            
         }
 
     }

@@ -23,15 +23,17 @@ namespace PROG7312_POE_PART1.UserControls
         /// </summary>
         private readonly List<Panel> targetPanels;
         private readonly List<Panel> draggablePanels;
+        private List<Panel> alreadyOrderedBooks = new List<Panel>();
         private readonly Stopwatch stopwatch = new Stopwatch();
         /// <summary>
         /// variable controlling wether the game has been started or not
         /// </summary>
         private bool gameStart = false;
-        private Point lastUpdatePoint = Point.Empty;
         private string[] callNumbers;
-        private List<Panel> alreadyOrderedBooks = new List<Panel>();
         private Point mouseOffset; // Add this as a class-level variable
+        private List<PictureBox> confettiList = new List<PictureBox>();
+        private Timer confettiTimer = null;
+        private PictureBox pb = null;
         /// <summary>
         /// 
         /// </summary>
@@ -39,8 +41,9 @@ namespace PROG7312_POE_PART1.UserControls
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            // Stored the LINQ query results into a List to prevent redundancy
+            // Puts all the panels(top panels) with the target tag into a list using a lINQ query. This prevents having to constantly query for all the panels
             targetPanels = this.Controls.OfType<Panel>().Where(p => p.Tag?.ToString() == "target").OrderBy(p => p.Name).ToList();
+            // Puts all the panels(bottom panels) with the draggable tag into a list using a lINQ query. This prevents having to constantly query for all the panels
             draggablePanels = this.Controls.OfType<Panel>().Where(p => p.Tag?.ToString() == "draggable").OrderBy(p => p.Name).ToList();
             InitializeTimer();
             this.Load += orderingGame_Load;
@@ -101,74 +104,99 @@ namespace PROG7312_POE_PART1.UserControls
         /// </summary>
         private void GenericPanel_MouseMove(object sender, MouseEventArgs e)
         {
+
             if (isDragging && activePanel != null && gameStart == true)
             {
-                this.SuspendLayout();  // Temporarily pause layout logic
-
                 // Calculate the new position based on the mouse's current position minus the offset
                 int x = e.X + activePanel.Left - mouseOffset.X;
                 int y = e.Y + activePanel.Top - mouseOffset.Y;
-
                 // Update the panel's position
                 activePanel.Location = new Point(x, y);
-                activePanel.Invalidate();  // Force a repaint of the panel
-                this.ResumeLayout();  // Resume layout logic
+                activePanel.Refresh(); // Forces the control to redraw itself
             }
-       }
+        }
         /// <summary>
         /// when the use lets go of the left-click button, it changes the image and text of the targetted panel
         /// </summary>
         private void GenericPanel_MouseUp(object sender, MouseEventArgs e)
         {
-            try{
-                this.SuspendLayout();
+            try
+            {
                 isDragging = false;
-                Label draggedPanelLabel = null;
-                Label targetPanelLabel = null;
-                // Store repeated calls in local variables
-                mediaPlayer.Instance.gameClickSoundAffect();
-                Rectangle activePanelBounds = activePanel.Bounds;
-                Point originalLocation = originalLocations[activePanel];
-                Panel matchedTargetPanel = null;
-                foreach (var targetPanel in targetPanels)
-                {
-                    if (activePanelBounds.IntersectsWith(targetPanel.Bounds))
-                    {
-                        // Store label of active panel and target panel in local variables
-                        draggedPanelLabel = activePanel.Controls.OfType<Label>().FirstOrDefault();
-                        targetPanelLabel = targetPanel.Controls.OfType<Label>().FirstOrDefault();
+                this.SuspendLayout();
 
-                        if (draggedPanelLabel != null && targetPanelLabel != null && !alreadyOrderedBooks.Contains(targetPanel))
-                        {
-                            targetPanel.BackgroundImage = activePanel.BackgroundImage;
-                            targetPanelLabel.Text = draggedPanelLabel.Text;
-                        }
+                var matchedTargetPanel = FindMatchingTargetPanel();
+                UpdateTargetPanel(matchedTargetPanel);
 
-                        matchedTargetPanel = targetPanel;
-                        break;
-                    }
-                }
-                if (matchedTargetPanel != null)
-                {
-                    var isCorrect = Toolbox.Instance.CheckPanelOrder(targetPanels, matchedTargetPanel, callNumbers,draggedPanelLabel);
-                    // Do something with isCorrect if needed.
-                    if (isCorrect == true)
-                    {
-                        pb_GameProgression.Value += 10;
-                        activePanel.Visible = false;
-                        alreadyOrderedBooks.Add(matchedTargetPanel);
-                    }
-                }
-                activePanel.Location = originalLocation;
+                activePanel.Location = originalLocations[activePanel];
                 activePanel = null;
+
                 this.ResumeLayout();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                mediaPlayer.Instance.errorSoundAffect();
-                MessageBox.Show(ex.Message);
+                // handle specific exception
             }
         }
+
+        private Panel FindMatchingTargetPanel()
+        {
+            foreach (var targetPanel in targetPanels)
+            {
+                if (activePanel.Bounds.IntersectsWith(targetPanel.Bounds))
+                {
+                    return targetPanel;
+                }
+            }
+            return null;
+        }
+
+        private void UpdateTargetPanel(Panel matchedTargetPanel)
+        {
+            if (matchedTargetPanel != null)
+            {
+                var draggedPanelLabel = activePanel.Controls.OfType<Label>().FirstOrDefault();
+                var targetPanelLabel = matchedTargetPanel.Controls.OfType<Label>().FirstOrDefault();
+
+                if (draggedPanelLabel != null && targetPanelLabel != null && !alreadyOrderedBooks.Contains(matchedTargetPanel))
+                {
+                    matchedTargetPanel.BackgroundImage = activePanel.BackgroundImage;
+                    targetPanelLabel.Text = draggedPanelLabel.Text;
+
+                    // Check if panel is in the correct place and update UI accordingly
+                    checkIfPanelInCorrectPlace(matchedTargetPanel, draggedPanelLabel);
+                }
+            }
+        }
+
+
+        private void checkIfPanelInCorrectPlace(Panel matchedTargetPanel, Label draggedPanelLabel)
+        {
+            if (matchedTargetPanel != null)
+            {
+                bool isCorrect = Toolbox.Instance.CheckPanelOrder(targetPanels, matchedTargetPanel, callNumbers, draggedPanelLabel);
+
+                if (isCorrect)
+                {
+                    pb_GameProgression.Value += 10;
+                    activePanel.Visible = false;
+                    alreadyOrderedBooks.Add(matchedTargetPanel);
+                    checkIfGameWon();
+                }
+            }
+
+        }
+
+        private void checkIfGameWon()
+        {
+            if (pb_GameProgression.Value == 100)
+            {
+                gameStart = false;
+                timer1.Enabled = false;
+                OnWin();
+            }
+        }
+
         /// <summary>
         /// when the users mouse hovers over any button, the method from mediaPlayer class is called and the 
         /// </summary>
@@ -184,6 +212,7 @@ namespace PROG7312_POE_PART1.UserControls
             timer1.Stop();
             mediaPlayer.Instance.buttonClickSoundAffect();
             Toolbox.Instance.ParentForm.loadMainMenu();
+            resetGame();
         }
         /// <summary>
         /// 
@@ -209,6 +238,93 @@ namespace PROG7312_POE_PART1.UserControls
         {
             timer1.Interval = 1000;
             timer1.Tick += Timer1_Tick;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void OnWin()
+        {
+            GenerateConfetti();
+            confettiTimer = new Timer();
+            confettiTimer.Interval = 50;
+            confettiTimer.Tick += ConfettiTimer_Tick;
+            confettiTimer.Start();
+            mediaPlayer.Instance.wongameSoundAffect();
+            btn_PlayAgain.Visible = true;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void GenerateConfetti()
+        {
+            Random rand = new Random();
+            for (int i = 0; i < 50; i++)
+            {
+                pb = new PictureBox();
+                pb.Width = 5;
+                pb.Height = 5;
+                pb.BackColor = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
+                pb.Location = new Point(rand.Next(this.Width), rand.Next(this.Height));
+                this.Controls.Add(pb);
+                confettiList.Add(pb);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ConfettiTimer_Tick(object sender, EventArgs e)
+        {
+            foreach (PictureBox pb in confettiList)
+            {
+                pb.Top += 5;
+                if (pb.Top > this.Height)
+                {
+                    pb.Top = -5;
+                    pb.Left = new Random().Next(this.Width);
+                }
+            }
+        }
+        /// <summary>
+        /// resets the game by first loading new call numbers and reseting the game time and progressbar
+        /// It then cycles through each top row panel and resets the images and the labels.
+        /// The bottom  row panels are then reset by being made visible again
+        /// </summary>
+        private void resetGame()
+        {
+            loadCallNumbers();
+            gameStart = false;
+            lb_GameTime.Text = "00:00:00";
+            pb_GameProgression.Value = 0;
+            foreach (var targetPanel in targetPanels)
+            {
+                targetPanel.BackgroundImage = null;
+                var targetPanelLabel = targetPanel.Controls.OfType<Label>().FirstOrDefault();
+                targetPanelLabel.Text = "000.000";
+            }
+
+            foreach (var draggablePanel in draggablePanels)
+            {
+                draggablePanel.Visible = true;
+            }
+            btn_PlayAgain.Visible = false;
+        }
+
+        private void btn_PlayAgain_Click(object sender, EventArgs e)
+        {
+            mediaPlayer.Instance.buttonClickSoundAffect();
+            // Stop the timer.
+            if (confettiTimer != null)
+            {
+                confettiTimer.Stop();
+            }
+            // Remove the PictureBox controls from the form and clear the list.
+            foreach (var pb in confettiList)
+            {
+                this.Controls.Remove(pb);
+            }
+            confettiList.Clear();
+            // Rest of your logic.
+            resetGame();
         }
     }
 }

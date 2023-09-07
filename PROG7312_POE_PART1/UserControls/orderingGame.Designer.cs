@@ -76,6 +76,7 @@
             this.lb_BottomBook7 = new System.Windows.Forms.Label();
             this.pn_BottomBook10 = new System.Windows.Forms.Panel();
             this.lb_BottomBook10 = new System.Windows.Forms.Label();
+            this.btn_PlayAgain = new System.Windows.Forms.Button();
             this.pn_TopBook1.SuspendLayout();
             this.pn_TopBook2.SuspendLayout();
             this.pn_TopBook4.SuspendLayout();
@@ -608,11 +609,28 @@
             this.lb_BottomBook10.TabIndex = 1;
             this.lb_BottomBook10.Text = "200.223";
             // 
+            // btn_PlayAgain
+            // 
+            this.btn_PlayAgain.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_PlayAgain.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_PlayAgain.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_PlayAgain.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_PlayAgain.Location = new System.Drawing.Point(294, 219);
+            this.btn_PlayAgain.Name = "btn_PlayAgain";
+            this.btn_PlayAgain.Size = new System.Drawing.Size(156, 35);
+            this.btn_PlayAgain.TabIndex = 35;
+            this.btn_PlayAgain.Text = "Play again?";
+            this.btn_PlayAgain.UseVisualStyleBackColor = false;
+            this.btn_PlayAgain.Visible = false;
+            this.btn_PlayAgain.Click += new System.EventHandler(this.btn_PlayAgain_Click);
+            this.btn_PlayAgain.MouseHover += new System.EventHandler(this.btn_OrderGame_MouseHover);
+            // 
             // orderingGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.orderGameBackground;
+            this.Controls.Add(this.btn_PlayAgain);
             this.Controls.Add(this.pn_BottomBook10);
             this.Controls.Add(this.pn_BottomBook9);
             this.Controls.Add(this.pn_BottomBook6);
@@ -737,5 +755,6 @@
         private System.Windows.Forms.Label lb_BottomBook7;
         private System.Windows.Forms.Panel pn_BottomBook10;
         private System.Windows.Forms.Label lb_BottomBook10;
+        private System.Windows.Forms.Button btn_PlayAgain;
     }
 }
