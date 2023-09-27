@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-
+/*
+ * ST10081932
+ * Geoffrey Huth
+ * PROG7312 Part 1
+ */
 namespace PROG7312_POE_PART1.UserControls
 {
     public partial class loadingScreen : UserControl
