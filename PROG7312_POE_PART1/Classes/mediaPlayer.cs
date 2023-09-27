@@ -45,8 +45,9 @@ namespace PROG7312_POE_PART1.Classes
         {
             return await Task.Run(() =>
             {
-                string relativePath = Path.Combine(exeLocation, "SoundAffects", fileName);
-                string fullPath = Path.GetFullPath(relativePath);
+                string projectRoot = Directory.GetParent(exeLocation).Parent.Parent.FullName;
+                string soundAffectsPath = Path.Combine(projectRoot, "SoundAffects", fileName);
+                string fullPath = Path.GetFullPath(soundAffectsPath);
                 try
                 {
                     return new AudioFileReader(fullPath);

@@ -229,6 +229,11 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\SoundAffects\buttonClick.wav" />
+    <Content Include="bin\Debug\SoundAffects\buttonHover.wav" />
+    <Content Include="bin\Debug\SoundAffects\error_soundaffect.wav" />
+    <Content Include="bin\Debug\SoundAffects\orderGameClick.wav" />
+    <Content Include="bin\Debug\SoundAffects\wongame_soundaffect.wav" />
     <Content Include="Images\Achievement1.png" />
     <Content Include="Images\Achievement2.png" />
     <Content Include="Images\Achievement3.png" />
@@ -247,7 +252,6 @@
     <Content Include="SoundAffects\wongame_soundaffect.wav" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
     <Folder Include="Music\" />
   </ItemGroup>
