@@ -63,6 +63,46 @@ namespace PROG7312_POE_PART1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Achievement1 {
+            get {
+                object obj = ResourceManager.GetObject("Achievement1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Achievement2 {
+            get {
+                object obj = ResourceManager.GetObject("Achievement2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Achievement3 {
+            get {
+                object obj = ResourceManager.GetObject("Achievement3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Achievement4 {
+            get {
+                object obj = ResourceManager.GetObject("Achievement4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap brownBook {
             get {
                 object obj = ResourceManager.GetObject("brownBook", resourceCulture);
@@ -146,6 +186,26 @@ namespace PROG7312_POE_PART1.Properties {
         internal static System.Drawing.Bitmap orderGameBackground {
             get {
                 object obj = ResourceManager.GetObject("orderGameBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Transparent {
+            get {
+                object obj = ResourceManager.GetObject("Transparent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TransparentImage {
+            get {
+                object obj = ResourceManager.GetObject("TransparentImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

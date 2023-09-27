@@ -48,8 +48,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Win32.Registry, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Registry.4.7.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.2.2.1\lib\net472\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Asio, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Asio.2.2.1\lib\netstandard2.0\NAudio.Asio.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Core.2.2.1\lib\netstandard2.0\NAudio.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Midi, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Midi.2.2.1\lib\netstandard2.0\NAudio.Midi.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Wasapi, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Wasapi.2.2.1\lib\netstandard2.0\NAudio.Wasapi.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.WinForms, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.WinForms.2.2.1\lib\net472\NAudio.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.WinMM, Version=2.2.1.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.WinMM.2.2.1\lib\netstandard2.0\NAudio.WinMM.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.7.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.7.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,10 +91,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\acheivementTracker.cs" />
     <Compile Include="Classes\callNumberObject.cs" />
     <Compile Include="Classes\leaderboardTracker.cs" />
     <Compile Include="Classes\mediaPlayer.cs" />
+    <Compile Include="Classes\orderingGameClass.cs" />
     <Compile Include="Classes\Toolbox.cs" />
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
@@ -85,11 +115,23 @@
     <Compile Include="UserControls\AchievementPage.Designer.cs">
       <DependentUpon>AchievementPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Confetti.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Confetti.Designer.cs">
+      <DependentUpon>Confetti.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Leaderboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\Leaderboard.Designer.cs">
       <DependentUpon>Leaderboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\loadingScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\loadingScreen.Designer.cs">
+      <DependentUpon>loadingScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\mainMenu.cs">
       <SubType>UserControl</SubType>
@@ -114,8 +156,14 @@
     <EmbeddedResource Include="UserControls\AchievementPage.resx">
       <DependentUpon>AchievementPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Confetti.resx">
+      <DependentUpon>Confetti.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Leaderboard.resx">
       <DependentUpon>Leaderboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\loadingScreen.resx">
+      <DependentUpon>loadingScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\mainMenu.resx">
       <DependentUpon>mainMenu.cs</DependentUpon>
@@ -123,6 +171,7 @@
     <EmbeddedResource Include="UserControls\orderingGame.resx">
       <DependentUpon>orderingGame.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -180,12 +229,22 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Achievement1.png" />
+    <Content Include="Images\Achievement2.png" />
+    <Content Include="Images\Achievement3.png" />
+    <Content Include="Images\Achievement4.png" />
     <Content Include="Images\brownBook.png" />
     <Content Include="Images\greenBook.png" />
+    <Content Include="Images\mainMenuBackground.jpg" />
+    <Content Include="Images\mainMenuBackground2.png" />
+    <None Include="Images\TransparentImage.png" />
+    <None Include="Images\Transparent.png" />
+    <Content Include="Images\yelloBook.png" />
     <Content Include="SoundAffects\buttonClick.wav" />
     <Content Include="SoundAffects\buttonHover.wav" />
     <Content Include="SoundAffects\error_soundaffect.wav" />
     <Content Include="SoundAffects\orderGameClick.wav" />
+    <Content Include="SoundAffects\wongame_soundaffect.wav" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />

@@ -1,84 +1,115 @@
-﻿using System.IO;
-using System.Media;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NAudio.Wave;
 
 namespace PROG7312_POE_PART1.Classes
 {
     internal class mediaPlayer
     {
-        //Private static instance of the class
+        /// <summary>
+        /// Singleton instance of the media player class
+        /// </summary>
         private static readonly mediaPlayer instance = new mediaPlayer();
+        /// <summary>
+        /// setter for the media file singleton instance
+        /// </summary>
         public static mediaPlayer Instance => instance;
         /// <summary>
-        /// These variables hold the sound player instances for each .wav file, this prevents
-        /// the code from having to constance initialzie a new instance of the SoundPlayer
-        /// overall it ensures  efficient use of resources and memroy management
+        /// the output variable that is used to play the sound affect
         /// </summary>
-        private SoundPlayer buttonHoverSoundPlayer;
-        private SoundPlayer buttonClickSoundPlayer;
-        private SoundPlayer gameClickSoundPlayer;
-        private SoundPlayer errorSoundPlayer;
-        private SoundPlayer wongameSoundPlayer;
+        private readonly WaveOutEvent sharedWaveOut;
         /// <summary>
-        /// Private constructor to ensure that no other instances can be created
+        /// the file reader that reads the .wav file and then passes it to the output event handler
         /// </summary>
+        private AudioFileReader sharedAudioFileReader;
+        private readonly string exeLocation = AppDomain.CurrentDomain.BaseDirectory;
+
+        // Private constructor
         private mediaPlayer()
         {
-            buttonHoverSoundPlayer = InitializeSoundPlayer("buttonHover.wav");
-            buttonClickSoundPlayer = InitializeSoundPlayer("buttonClick.wav");
-            gameClickSoundPlayer = InitializeSoundPlayer("orderGameClick.wav");
-            errorSoundPlayer = InitializeSoundPlayer("error_soundaffect.wav");
-            wongameSoundPlayer = InitializeSoundPlayer("wongame_soundaffect.wav");
+            sharedWaveOut = new WaveOutEvent();
         }
+
         /// <summary>
-        /// This code only runs once when the mediaPlayer is first initialized, it prevents the absolute paths to the 
-        /// .wav files from repeatedly being search for.
+        /// Asynchronous file reading
         /// </summary>
-        private SoundPlayer InitializeSoundPlayer(string fileName)
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        private async Task<AudioFileReader> ReadAudioFileAsync(string fileName)
         {
-            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
-            string relativePath = Path.Combine(appPath, "..", "..", "SoundAffects", fileName);
-            string absolutePath = Path.GetFullPath(relativePath);
-            return new SoundPlayer(absolutePath);
+            return await Task.Run(() =>
+            {
+                string relativePath = Path.Combine(exeLocation, "SoundAffects", fileName);
+                string fullPath = Path.GetFullPath(relativePath);
+                try
+                {
+                    return new AudioFileReader(fullPath);
+                }
+                catch (Exception ex)
+                {
+                    // Handle the exception here.
+                    return null;
+                }
+            });
         }
+
         /// <summary>
-        /// Task.Run() this peice of code was gotten from ChatGPT
-        /// The methods simply plays the sound by using the already initiazied variables
+        /// Asynchronous play sound method that utilizes the NAudio nugget package.
+        /// This method calls the ReadAudioFile method and then uses the file reader and the WaveOutput to initiate the sound.
         /// </summary>
-        public void buttonHoverSoundAffect()
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public async Task PlaySoundAsync(string fileName)
         {
-            Task.Run(() => buttonHoverSoundPlayer.Play());
+            try
+            {
+                sharedAudioFileReader?.Dispose();
+                //looking for the specific file using the specified filename
+                sharedAudioFileReader = await ReadAudioFileAsync(fileName);
+        
+                if (sharedWaveOut != null && sharedAudioFileReader != null)
+                {
+                    //stopping the previous sound
+                    sharedWaveOut.Stop();
+                    //initializing the new sound affect .wav file
+                    sharedWaveOut.Init(sharedAudioFileReader);
+                    //playing the new sound affect
+                    sharedWaveOut.Play();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+            }
         }
-        /// <summary>
-        /// Task.Run() this peice of code was gotten from ChatGPT
-        /// The methods simply plays the sound by using the already initiazied variables
-        /// </summary>
-        public void buttonClickSoundAffect()
+
+        #region Sends the names of each of the soundaffect.wav files to the play sound 
+        public async Task ButtonHoverSoundEffect()
         {
-            Task.Run(() => buttonClickSoundPlayer.Play());
+            await PlaySoundAsync("buttonHover.wav");
         }
-        /// <summary>
-        /// Task.Run() this peice of code was gotten from ChatGPT
-        /// The methods simply plays the sound by using the already initiazied variables
-        /// </summary>
-        public void gameClickSoundAffect()
+
+        public async Task ButtonClickSoundEffect()
         {
-            Task.Run(() => gameClickSoundPlayer.Play());
+            await PlaySoundAsync("buttonClick.wav");
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        public void errorSoundAffect()
+
+        public async Task GameClickSoundEffect()
         {
-            Task.Run(() => errorSoundPlayer.Play());
+            await PlaySoundAsync("orderGameClick.wav");
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        public void wongameSoundAffect()
+
+        public async Task ErrorSoundEffect()
         {
-            Task.Run(() => wongameSoundPlayer.Play());
+            await PlaySoundAsync("error_soundaffect.wav");
         }
+
+        public async Task WinGameSoundEffect()
+        {
+            await PlaySoundAsync("wongame_soundaffect.wav");
+        }
+        #endregion
     }
 }

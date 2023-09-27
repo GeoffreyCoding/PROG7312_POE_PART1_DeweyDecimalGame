@@ -132,9 +132,9 @@
             this.lb_FastestTime.Image = global::PROG7312_POE_PART1.Properties.Resources.labelBackground;
             this.lb_FastestTime.Location = new System.Drawing.Point(176, 473);
             this.lb_FastestTime.Name = "lb_FastestTime";
-            this.lb_FastestTime.Size = new System.Drawing.Size(96, 25);
+            this.lb_FastestTime.Size = new System.Drawing.Size(84, 25);
             this.lb_FastestTime.TabIndex = 2;
-            this.lb_FastestTime.Text = "00:00:00";
+            this.lb_FastestTime.Text = "000000";
             // 
             // lb_ScoreToBeat
             // 
@@ -280,6 +280,9 @@
             this.pn_BottomBook1.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook1.TabIndex = 25;
             this.pn_BottomBook1.Tag = "draggable";
+            this.pn_BottomBook1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook1
             // 
@@ -302,6 +305,9 @@
             this.pn_BottomBook2.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook2.TabIndex = 26;
             this.pn_BottomBook2.Tag = "draggable";
+            this.pn_BottomBook2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook2
             // 
@@ -349,6 +355,9 @@
             this.pn_BottomBook3.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook3.TabIndex = 27;
             this.pn_BottomBook3.Tag = "draggable";
+            this.pn_BottomBook3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_TopBook6
             // 
@@ -466,6 +475,9 @@
             this.pn_BottomBook6.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook6.TabIndex = 30;
             this.pn_BottomBook6.Tag = "draggable";
+            this.pn_BottomBook6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook6
             // 
@@ -498,6 +510,9 @@
             this.pn_BottomBook5.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook5.TabIndex = 29;
             this.pn_BottomBook5.Tag = "draggable";
+            this.pn_BottomBook5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook4
             // 
@@ -520,6 +535,9 @@
             this.pn_BottomBook4.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook4.TabIndex = 28;
             this.pn_BottomBook4.Tag = "draggable";
+            this.pn_BottomBook4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // pn_BottomBook9
             // 
@@ -532,6 +550,9 @@
             this.pn_BottomBook9.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook9.TabIndex = 33;
             this.pn_BottomBook9.Tag = "draggable";
+            this.pn_BottomBook9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook9.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook9
             // 
@@ -554,6 +575,9 @@
             this.pn_BottomBook8.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook8.TabIndex = 32;
             this.pn_BottomBook8.Tag = "draggable";
+            this.pn_BottomBook8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook8
             // 
@@ -576,6 +600,9 @@
             this.pn_BottomBook7.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook7.TabIndex = 31;
             this.pn_BottomBook7.Tag = "draggable";
+            this.pn_BottomBook7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook7
             // 
@@ -598,6 +625,9 @@
             this.pn_BottomBook10.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook10.TabIndex = 34;
             this.pn_BottomBook10.Tag = "draggable";
+            this.pn_BottomBook10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook10.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook10
             // 

@@ -17,11 +17,12 @@ namespace PROG7312_POE_PART1
         public Form1()
         {
             InitializeComponent();
-
             Toolbox.Instance.ParentForm = this.FindForm() as Form1;
+            loadingScreen1.Visible = true;
         }
 
-        public void loadMainMenu()
+        #region methods that change the visibility of all the user controls
+        public void LoadMainMenu()
         {
             orderingGame1.Visible = false;
             leaderboard1.Visible = false;
@@ -29,15 +30,22 @@ namespace PROG7312_POE_PART1
             mainMenu1.Visible = true;
         }
 
-        public void loadOrderingGame()
+        public void VisibleConfetti()
         {
-            mainMenu1.Visible=false;
+            confetti1.BringToFront();
+            confetti1.Visible = true;
+        }
+
+        public void LoadOrderingGame()
+        {
+            mainMenu1.Visible = false;
             leaderboard1.Visible = false;
             achievementPage1.Visible = false;
+            loadingScreen1.Dispose();
             orderingGame1.Visible = true;
         }
 
-        public void loadLeaderboard()
+        public void LoadLeaderboard()
         {
             mainMenu1.Visible = false;
             orderingGame1.Visible = false;
@@ -45,12 +53,28 @@ namespace PROG7312_POE_PART1
             leaderboard1.Visible = true;
         }
 
-        public void loadAcheivementsPage()
+        public void LoadAcheivementsPage()
         {
             mainMenu1.Visible = false;
             orderingGame1.Visible = false;
             leaderboard1.Visible = false;
             achievementPage1.Visible = true;
+            achievementPage1.LoadAchievments();
+        }
+
+        #endregion
+
+        /// <summary>
+        /// ensures that all the user-controls are garbage collected to avoid memory leaks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            orderingGame1.Dispose();
+            achievementPage1.Dispose();
+            mainMenu1.Dispose();
+            leaderboard1.Dispose();
         }
     }
 }

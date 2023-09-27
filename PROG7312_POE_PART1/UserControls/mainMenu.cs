@@ -23,35 +23,51 @@ namespace PROG7312_POE_PART1.UserControls
         
         private void btn_OrderGame_MouseEnter(object sender, EventArgs e)
         {
-            mediaPlayer.Instance.buttonHoverSoundAffect();
+            soundAffectManager(1);
         }
 
         private void btn_OrderGame_Click(object sender, EventArgs e)
         {
-            mediaPlayer.Instance.buttonClickSoundAffect();
-            Toolbox.Instance.ParentForm.loadOrderingGame();
+            soundAffectManager(2);
+            Toolbox.Instance.ParentForm.LoadOrderingGame();
         }
 
         private void btn_MatchColumns_Click(object sender, EventArgs e)
         {
-            mediaPlayer.Instance.buttonClickSoundAffect();
+            
         }
 
         private void btn_FindCallNumbers_Click(object sender, EventArgs e)
         {
-            mediaPlayer.Instance.buttonClickSoundAffect();
+
         }
 
         private void btn_Leaderboard_Click(object sender, EventArgs e)
         {
-            mediaPlayer.Instance.buttonClickSoundAffect();
-            Toolbox.Instance.ParentForm.loadLeaderboard();
+            soundAffectManager(2);
+            Toolbox.Instance.ParentForm.LoadLeaderboard();
+            Leaderboard leaderboard = new Leaderboard();
+            leaderboard.loadLabels();
+            leaderboard.loadLeaderboard();
         }
 
         private void btn_Acheivements_Click(object sender, EventArgs e)
         {
-            mediaPlayer.Instance.buttonClickSoundAffect();
-            Toolbox.Instance.ParentForm.loadAcheivementsPage();
+            soundAffectManager(2);
+            Toolbox.Instance.ParentForm.LoadAcheivementsPage();
+        }
+
+        private async void soundAffectManager(int code)
+        {
+            switch(code)
+            {
+                case 1:
+                    await mediaPlayer.Instance.ButtonHoverSoundEffect();
+                    break;
+                case 2:
+                    await mediaPlayer.Instance.ButtonClickSoundEffect();
+                    break;
+            }
         }
     }
 }
