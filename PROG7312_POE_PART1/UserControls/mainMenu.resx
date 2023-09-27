@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rtb_OrderingGameHelp.Text" xml:space="preserve">
+    <value>In the Ordering Game. You must order the panels in ascending order according to the dewey decimal system. Your goal is to do this in the fastest time possible. Unlike most games, in this game your goal is to achieve the lowest score possible.</value>
+  </data>
 </root>

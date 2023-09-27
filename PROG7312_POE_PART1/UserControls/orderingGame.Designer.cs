@@ -76,6 +76,7 @@
             this.lb_BottomBook7 = new System.Windows.Forms.Label();
             this.pn_BottomBook10 = new System.Windows.Forms.Panel();
             this.lb_BottomBook10 = new System.Windows.Forms.Label();
+            this.btn_PlayAgain = new System.Windows.Forms.Button();
             this.pn_TopBook1.SuspendLayout();
             this.pn_TopBook2.SuspendLayout();
             this.pn_TopBook4.SuspendLayout();
@@ -131,9 +132,9 @@
             this.lb_FastestTime.Image = global::PROG7312_POE_PART1.Properties.Resources.labelBackground;
             this.lb_FastestTime.Location = new System.Drawing.Point(176, 473);
             this.lb_FastestTime.Name = "lb_FastestTime";
-            this.lb_FastestTime.Size = new System.Drawing.Size(96, 25);
+            this.lb_FastestTime.Size = new System.Drawing.Size(84, 25);
             this.lb_FastestTime.TabIndex = 2;
-            this.lb_FastestTime.Text = "00:00:00";
+            this.lb_FastestTime.Text = "000000";
             // 
             // lb_ScoreToBeat
             // 
@@ -279,6 +280,9 @@
             this.pn_BottomBook1.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook1.TabIndex = 25;
             this.pn_BottomBook1.Tag = "draggable";
+            this.pn_BottomBook1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook1
             // 
@@ -301,6 +305,9 @@
             this.pn_BottomBook2.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook2.TabIndex = 26;
             this.pn_BottomBook2.Tag = "draggable";
+            this.pn_BottomBook2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook2
             // 
@@ -348,6 +355,9 @@
             this.pn_BottomBook3.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook3.TabIndex = 27;
             this.pn_BottomBook3.Tag = "draggable";
+            this.pn_BottomBook3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_TopBook6
             // 
@@ -465,6 +475,9 @@
             this.pn_BottomBook6.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook6.TabIndex = 30;
             this.pn_BottomBook6.Tag = "draggable";
+            this.pn_BottomBook6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook6
             // 
@@ -497,6 +510,9 @@
             this.pn_BottomBook5.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook5.TabIndex = 29;
             this.pn_BottomBook5.Tag = "draggable";
+            this.pn_BottomBook5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook4
             // 
@@ -519,6 +535,9 @@
             this.pn_BottomBook4.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook4.TabIndex = 28;
             this.pn_BottomBook4.Tag = "draggable";
+            this.pn_BottomBook4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // pn_BottomBook9
             // 
@@ -531,6 +550,9 @@
             this.pn_BottomBook9.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook9.TabIndex = 33;
             this.pn_BottomBook9.Tag = "draggable";
+            this.pn_BottomBook9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook9.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook9
             // 
@@ -553,6 +575,9 @@
             this.pn_BottomBook8.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook8.TabIndex = 32;
             this.pn_BottomBook8.Tag = "draggable";
+            this.pn_BottomBook8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook8
             // 
@@ -575,6 +600,9 @@
             this.pn_BottomBook7.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook7.TabIndex = 31;
             this.pn_BottomBook7.Tag = "draggable";
+            this.pn_BottomBook7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook7
             // 
@@ -597,6 +625,9 @@
             this.pn_BottomBook10.Size = new System.Drawing.Size(64, 132);
             this.pn_BottomBook10.TabIndex = 34;
             this.pn_BottomBook10.Tag = "draggable";
+            this.pn_BottomBook10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseDown);
+            this.pn_BottomBook10.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseMove);
+            this.pn_BottomBook10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GenericPanel_MouseUp);
             // 
             // lb_BottomBook10
             // 
@@ -608,11 +639,28 @@
             this.lb_BottomBook10.TabIndex = 1;
             this.lb_BottomBook10.Text = "200.223";
             // 
+            // btn_PlayAgain
+            // 
+            this.btn_PlayAgain.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_PlayAgain.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_PlayAgain.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_PlayAgain.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_PlayAgain.Location = new System.Drawing.Point(294, 219);
+            this.btn_PlayAgain.Name = "btn_PlayAgain";
+            this.btn_PlayAgain.Size = new System.Drawing.Size(156, 35);
+            this.btn_PlayAgain.TabIndex = 35;
+            this.btn_PlayAgain.Text = "Play again?";
+            this.btn_PlayAgain.UseVisualStyleBackColor = false;
+            this.btn_PlayAgain.Visible = false;
+            this.btn_PlayAgain.Click += new System.EventHandler(this.btn_PlayAgain_Click);
+            this.btn_PlayAgain.MouseHover += new System.EventHandler(this.btn_OrderGame_MouseHover);
+            // 
             // orderingGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PROG7312_POE_PART1.Properties.Resources.orderGameBackground;
+            this.Controls.Add(this.btn_PlayAgain);
             this.Controls.Add(this.pn_BottomBook10);
             this.Controls.Add(this.pn_BottomBook9);
             this.Controls.Add(this.pn_BottomBook6);
@@ -737,5 +785,6 @@
         private System.Windows.Forms.Label lb_BottomBook7;
         private System.Windows.Forms.Panel pn_BottomBook10;
         private System.Windows.Forms.Label lb_BottomBook10;
+        private System.Windows.Forms.Button btn_PlayAgain;
     }
 }
