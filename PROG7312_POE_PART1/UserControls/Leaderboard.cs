@@ -41,7 +41,7 @@ namespace PROG7312_POE_PART1.UserControls
         #endregion
 
         /// <summary>
-        /// 
+        /// loads all the score and time labels into parralel arrays
         /// </summary>
         public void loadLabels()
         {
@@ -59,7 +59,7 @@ namespace PROG7312_POE_PART1.UserControls
             timeLabels[4] = lb_Time5;
         }
         /// <summary>
-        /// 
+        /// loads all the currently stored top 5 scores and times on the labels 
         /// </summary>
         public void loadLeaderboard()
         {
@@ -83,7 +83,7 @@ namespace PROG7312_POE_PART1.UserControls
             }
         }
         /// <summary>
-        /// 
+        /// detects when the visibility of the user-control changes and then updates the labels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

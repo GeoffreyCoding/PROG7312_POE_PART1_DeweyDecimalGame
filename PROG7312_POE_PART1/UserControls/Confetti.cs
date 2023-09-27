@@ -7,20 +7,28 @@ namespace PROG7312_POE_PART1.UserControls
 {
     public partial class Confetti : UserControl
     {
+        //brush used to apply the colours to the confetti
         private SolidBrush brush;
+        //bitmap used to store the confetti
         private Bitmap confettiBitmap;
+        //graphics used to generate/fill the picture box with the confetti
         private Graphics confettiGraphics;
+        //list that stores all the confetti particles
         private List<Rectangle> confettiRects;
+        //timer used to control the confetti
         private Timer confettiTimer;
+        //random used to generate the colours of the confetti
         private Random random;
-
+        //constructore
         public Confetti()
         {
             InitializeComponent();
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.BackColor = Color.Transparent;
         }
 
+        #region Confetti Main Methods
+        /// <summary>
+        /// initializes the confetti objects and variables such as the timer and the bitmap/graphics and brush. It will then start the confetti timer
+        /// </summary>
         private void initializeConfetti()
         {
             confettiBitmap = new Bitmap(pb_Confetti.Width, pb_Confetti.Height);
@@ -31,7 +39,9 @@ namespace PROG7312_POE_PART1.UserControls
             confettiTimer.Tick += ConfettiTimer_Tick;
             confettiTimer.Start();
         }
-
+        /// <summary>
+        /// Fills the list with all the confetti rectangles
+        /// </summary>
         private void fillConfettiList()
         {
             random = new Random();
@@ -43,7 +53,12 @@ namespace PROG7312_POE_PART1.UserControls
                 confettiRects.Add(new Rectangle(x, y, 5, 5));
             }
         }
-
+        /// <summary>
+        /// confetti controller which adds the confetti to the pb adn then moves all the confetti downwards. The colours of the confetti
+        /// is already randomly assigned here
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfettiTimer_Tick(object sender, EventArgs e)
         {
             // Clear the graphics object for each frame
@@ -66,14 +81,21 @@ namespace PROG7312_POE_PART1.UserControls
                 pb_Confetti.Invalidate();
             }
         }
-
+        /// <summary>
+        /// stops the confetti time and get rid of all the confetti on the screen
+        /// </summary>
         private void clearConfetti()
         {
             confettiTimer.Stop();
             confettiTimer = null;
             pb_Confetti.Invalidate();
         }
-
+        #endregion
+        /// <summary>
+        /// detects a changes in the user controls visibility, thus starting the confetti generation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Confetti_VisibleChanged(object sender, EventArgs e)
         {
             if (Visible)
@@ -87,10 +109,13 @@ namespace PROG7312_POE_PART1.UserControls
             }
         }
 
+        #region button clicks
         private void bt_Close_Click(object sender, EventArgs e)
         {
             clearConfetti();
             this.Visible = false;
         }
+        #endregion
+
     }
 }

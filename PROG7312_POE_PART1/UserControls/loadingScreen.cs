@@ -6,13 +6,14 @@ namespace PROG7312_POE_PART1.UserControls
 {
     public partial class loadingScreen : UserControl
     {
+        //angle of the progress bar ( circle )
         private int angle = 0;
         private Timer timerHideLoading; // New timer
 
         public loadingScreen()
         {
             InitializeComponent();
-
+            
             // Initialize the loading animation timer
             timerLoading.Interval = 50;
             timerLoading.Start();
@@ -23,7 +24,11 @@ namespace PROG7312_POE_PART1.UserControls
             timerHideLoading.Tick += new EventHandler(timerHideLoading_Tick);
             timerHideLoading.Start();
         }
-
+        /// <summary>
+        /// controls the loading... text and drawing of the loading circle
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timerLoading_Tick(object sender, EventArgs e)
         {
             angle = (angle + 5) % 360;
@@ -34,13 +39,17 @@ namespace PROG7312_POE_PART1.UserControls
                 lb_Loading.Text =  @"Loading";
             }
         }
-
+        /// <summary>
+        /// handles the painting of the loading bar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pictureBoxLoading_Paint(object sender, PaintEventArgs e)
         {
             int x = pictureBoxLoading.Width / 2;
             int y = pictureBoxLoading.Height / 2;
             int radius = 150;
-
+            //changing the render quality
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
             // Draw a circle
@@ -51,7 +60,11 @@ namespace PROG7312_POE_PART1.UserControls
 
             e = null;
         }
-
+        /// <summary>
+        /// hides the user control after a set amount of time
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timerHideLoading_Tick(object sender, EventArgs e)
         {
             this.Visible = false;  // Hide this control

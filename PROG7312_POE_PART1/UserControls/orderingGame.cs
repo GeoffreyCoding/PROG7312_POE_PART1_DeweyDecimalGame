@@ -47,6 +47,8 @@ namespace PROG7312_POE_PART1.UserControls
             FillTargetPanels();
             StoreOriginalPanelLocations();
         }
+
+        #region Methods only run once during app initialization
         /// <summary>
         /// fills the Target panels array with all the panel ids, This format was recommended by ReSharpe
         /// </summary>
@@ -85,27 +87,10 @@ namespace PROG7312_POE_PART1.UserControls
                 originalLocations[panel] = panel.Location;
             }
         }
-        /// <summary>
-        /// calls the method from the ordering game class to generate the letters and dewey decimal numbers. This method then changes the label
-        /// texts of the bottom panels and finally sorts the dewey decimal list after the labels texts have been changed. This prevents
-        /// the need for two different lists
-        /// </summary>
-        private void LoadCallNumbers()
-        {
-            orderingGameClass.Instance.GenerateUniqueDeweyDecimal();
-            List<string> callNumbers = callNumberObject.Instance.DeweyDecimals;
-            List<string> callLetters = orderingGameClass.Instance.GenerateRandomLetters().ToList();
-            for (int i = 0; i < draggablePanels.Count; i++)
-            {
-                //gets the label on the specified panel (there is only 1 label per panel making singleOrDefault the best option)
-                var label = draggablePanels[i].Controls.OfType<Label>().SingleOrDefault();
-                label.Text = $"{callNumbers[i]} {callLetters[i]}";
-            }
-            //sorting the list of dewey decimals so that the correct order of the panels is solidified
-            callNumberObject.Instance.DeweyDecimals.Sort();
-            callNumbers = null;
-            callLetters = null;
-        }
+        #endregion
+
+
+        #region Event handlers controlling the drag and drop feature
         /// <summary>
         /// Controls the initial click on a panel
         /// </summary>
@@ -169,6 +154,30 @@ namespace PROG7312_POE_PART1.UserControls
             activePanel = null;
             //resuming the layout now that the operation is complete
             this.ResumeLayout();
+        }
+        #endregion
+
+        #region Main methods for the ordering game 
+        /// <summary>
+        /// calls the method from the ordering game class to generate the letters and dewey decimal numbers. This method then changes the label
+        /// texts of the bottom panels and finally sorts the dewey decimal list after the labels texts have been changed. This prevents
+        /// the need for two different lists
+        /// </summary>
+        private void LoadCallNumbers()
+        {
+            orderingGameClass.Instance.GenerateUniqueDeweyDecimal();
+            List<string> callNumbers = callNumberObject.Instance.DeweyDecimals;
+            List<string> callLetters = orderingGameClass.Instance.GenerateRandomLetters().ToList();
+            for (int i = 0; i < draggablePanels.Count; i++)
+            {
+                //gets the label on the specified panel (there is only 1 label per panel making singleOrDefault the best option)
+                var label = draggablePanels[i].Controls.OfType<Label>().SingleOrDefault();
+                label.Text = $"{callNumbers[i]} {callLetters[i]}";
+            }
+            //sorting the list of dewey decimals so that the correct order of the panels is solidified
+            callNumberObject.Instance.DeweyDecimals.Sort();
+            callNumbers = null;
+            callLetters = null;
         }
         /// <summary>
         /// Finds the panel that you dragged the bottom panel on top of. It then returns that panel or null if you did not drag it on
@@ -255,6 +264,19 @@ namespace PROG7312_POE_PART1.UserControls
                 OnWin();
             }
         }
+        #endregion
+
+        #region Button clicks
+        /// <summary>
+        /// simply calls the startgame button to reset the game and allow the user to play again
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_PlayAgain_Click(object sender, EventArgs e)
+        {
+            mediaPlayer.Instance.ButtonClickSoundEffect();
+            btn_StartGame.PerformClick();
+        }
         /// <summary>
         /// plays the hover sound when hovering over any button
         /// </summary>
@@ -288,6 +310,8 @@ namespace PROG7312_POE_PART1.UserControls
             timer1.Start();
             stopwatch.Restart();
         }
+        #endregion
+
         /// <summary>
         /// controls the label that shows the user how much time has passed in the current games session. This later is
         /// converted into a score.
@@ -317,16 +341,8 @@ namespace PROG7312_POE_PART1.UserControls
             Toolbox.Instance.ParentForm.VisibleConfetti();
             mediaPlayer.Instance.WinGameSoundEffect();
         }
-        /// <summary>
-        /// simply calls the startgame button to reset the game and allow the user to play again
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_PlayAgain_Click(object sender, EventArgs e)
-        {
-            mediaPlayer.Instance.ButtonClickSoundEffect();
-            btn_StartGame.PerformClick();
-        }
+
+        #region Resets the game and its components
         /// <summary>
         /// resets the game to its original state so that the user can play again.
         /// </summary>
@@ -338,8 +354,8 @@ namespace PROG7312_POE_PART1.UserControls
             {
                 var label = panel.Controls.OfType<Label>().SingleOrDefault();
 
-                    label.Text = "000.00";
-                    panel.BackgroundImage = null;
+                label.Text = "000.00";
+                panel.BackgroundImage = null;
             }
             //resetting bottom panels
             foreach (Panel panel in draggablePanels)
@@ -363,5 +379,8 @@ namespace PROG7312_POE_PART1.UserControls
             alreadyOrderedBooks.Clear();
             pb_GameProgression.Value = 0;
         }
+
+
+        #endregion
     }
 }
