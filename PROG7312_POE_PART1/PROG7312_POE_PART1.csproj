@@ -93,6 +93,8 @@
   <ItemGroup>
     <Compile Include="Classes\callNumberObject.cs" />
     <Compile Include="Classes\leaderboardTracker.cs" />
+    <Compile Include="Classes\matchingGameClass.cs" />
+    <Compile Include="Classes\matchingGameObject.cs" />
     <Compile Include="Classes\mediaPlayer.cs" />
     <Compile Include="Classes\orderingGameClass.cs" />
     <Compile Include="Classes\Toolbox.cs" />
@@ -139,6 +141,12 @@
     <Compile Include="UserControls\mainMenu.Designer.cs">
       <DependentUpon>mainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\matchingGame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\matchingGame.Designer.cs">
+      <DependentUpon>matchingGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\orderingGame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\mainMenu.resx">
       <DependentUpon>mainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\matchingGame.resx">
+      <DependentUpon>matchingGame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\orderingGame.resx">
       <DependentUpon>orderingGame.cs</DependentUpon>

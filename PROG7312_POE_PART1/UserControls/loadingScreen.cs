@@ -24,7 +24,7 @@ namespace PROG7312_POE_PART1.UserControls
 
             // Initialize the new timer to hide the loading screen
             timerHideLoading = new Timer();
-            timerHideLoading.Interval = 30000; //30 seconds
+            timerHideLoading.Interval = 15000; //15 seconds
             timerHideLoading.Tick += new EventHandler(timerHideLoading_Tick);
             timerHideLoading.Start();
         }
