@@ -4,9 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
+ * ST10081932
+ * Geoffrey Huth
+ * PROG7312 Part 1
+ */
 namespace PROG7312_POE_PART1.Classes
 {
+
     internal class matchingGameClass
     {
         /// <summary>
