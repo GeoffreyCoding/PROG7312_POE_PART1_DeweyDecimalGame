@@ -15,9 +15,11 @@ using System.Windows.Forms;
 namespace PROG7312_POE_PART1.UserControls
 {
     public partial class matchingGame : UserControl
-    {
+    { 
         private List<(Point, Point)> drawnLines = new List<(Point, Point)>();
+        //panel clicked on 
         private bool isDragging;
+        //panel being dragged
         private Panel activePanel;
         //top panels
         private readonly List<Panel> targetPanels = new List<Panel>();
@@ -37,19 +39,26 @@ namespace PROG7312_POE_PART1.UserControls
             this.DoubleBuffered = true; // To make drawing smoother
 
         }
+
+        #region Initializes the game (Fills panel arrays) and fills the text boxes with the questions and answers
         /// <summary>
         /// initializes the gmae
         /// </summary>
         private void initializeGame()
         {
+            //fills the dictionary with the target panels
             FillTargetPanels();
+            //fills the dictionary with description panels
             FillDescriptionPanels();
+            //fills the dictionairy with the dewey decimal categories and their corresponding numbers
             matchingGameClass.Instance.fillDeweyCategories();
+            //fills the labels on the panels with their corresponding categories or numbers
             fillTextBoxes(false);
+            //Initializes timer
             InitializeTimer();
         }
         /// <summary>
-        /// fills the target panel array
+        /// fills the target panel array in re-sharpe/co-pilot format
         /// </summary>
         private void FillTargetPanels()
         {
@@ -62,7 +71,7 @@ namespace PROG7312_POE_PART1.UserControls
             targetPanelArray = null;
         }
         /// <summary>
-        /// fills the description panel array
+        /// fills the description panel array in re-sharpe/co-pilot format
         /// </summary>
         private void FillDescriptionPanels()
         {
@@ -80,16 +89,23 @@ namespace PROG7312_POE_PART1.UserControls
         /// </summary>
         private void fillTextBoxes(bool alternateQuestions)
         {          
+            //will store the chosen questions
             Dictionary<string,string> gameQuestions = matchingGameClass.Instance.getRandomQuestionsAndAnswers(7);
+            //variable stores the label on the panel
             Label txtLabels = null;
+            //contains a random list of numbers tht will 
             List<int> randomNumberList = new List<int>();
-
+            //ensures that game questions has all the questions required
             if (gameQuestions.Count >= 4)
             {
+                //iterates through the questions
                 for (int questions = 0; questions < 4; questions++)
                 {
+                    //gets a random element from gameQuestions
                     var txtQuestions = gameQuestions.ElementAt(questions);
+                    //grabs a random panel
                     txtLabels = targetPanels[questions].Controls.OfType<Label>().FirstOrDefault();
+                    //decides which orientation the questions will be in
                     if (alternateQuestions == false)
                     {
                         txtLabels.Text = txtQuestions.Key;
@@ -98,18 +114,22 @@ namespace PROG7312_POE_PART1.UserControls
                     {
                         txtLabels.Text = txtQuestions.Value;
                     }
-                    
+                    //ading the correct questions
                     matchingGameObject.Instance.CorrectQuestions.Add(txtQuestions.Key, txtQuestions.Value);
                 }
             }
 
             if (gameQuestions.Count >= 7)
             {
+                //gets the list of random numbers from 0-7
                 randomNumberList = matchingGameClass.Instance.getRandomNumberList();
                 for (int questions = 0; questions < 7; questions++)
                 {
+                    //gets a random element
                     var txtQuestions = gameQuestions.ElementAt(randomNumberList[questions]);
+                    //gets label of panel
                     txtLabels = descriptionPanels[questions].Controls.OfType<Label>().FirstOrDefault();
+                    //controls questions and answer orientation
                     if (alternateQuestions == true)
                     {
                         txtLabels.Text = txtQuestions.Key;
@@ -124,6 +144,9 @@ namespace PROG7312_POE_PART1.UserControls
             gameQuestions = null;
             txtLabels = null;
         }
+        #endregion
+
+        #region Controls the dragging of the panels and drawing of lines
         /// <summary>
         /// event detects when the user clicks on a panel
         /// </summary>
@@ -138,20 +161,7 @@ namespace PROG7312_POE_PART1.UserControls
             }
             
         }
-        /// <summary>
-        /// checks if the user has hovered over a target panel
-        /// </summary>
-        private Panel CheckIntersectsWithTargetPanels(Point mousePosition)
-        {
-            foreach (var targetPanel in targetPanels)
-            {
-                if (targetPanel.Bounds.Contains(mousePosition))
-                {
-                    return targetPanel;
-                }
-            }
-            return null; // return null if the mouse does not intersect with any target panel
-        }
+        
         /// <summary>
         /// event controls the lines that get painted
         /// </summary>
@@ -166,6 +176,61 @@ namespace PROG7312_POE_PART1.UserControls
                 this.Invalidate(); // Force the control to be redrawn
             }
         }
+        /// <summary>
+        /// mouse up event that checks if the user has answered the question correctly
+        /// </summary>
+        private void descriptionPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Deactivate dragging
+            isDragging = false;
+
+            // Calculate the end point based on the mouse position when the mouse is released
+            endPoint = this.PointToClient(Cursor.Position);
+
+            Panel intersectedPanel = CheckIntersectsWithTargetPanels(endPoint);
+
+            if (intersectedPanel == null)
+            {
+                // Invalidate the control to erase the line.
+                this.Invalidate();
+            }
+            else
+            {
+                //getting target panel label
+                Label label = intersectedPanel.Controls.OfType<Label>().FirstOrDefault();
+                //assigning qestion
+                string leftSideQuestion = label.Text;
+                //getting active panel label
+                label = activePanel.Controls.OfType<Label>().FirstOrDefault();
+                //assigning text
+                string rigthSideQuestion = label.Text;
+                //creating a key value pair that contains the questions and description pair
+                KeyValuePair<string, string> question = new KeyValuePair<string, string>(leftSideQuestion, rigthSideQuestion);
+                //checks if the answer is correct
+                var isCorrect = checkAnswer(question);
+                if (isCorrect)
+                {
+                    addLine(intersectedPanel);
+                    this.Invalidate(); // Draw the permanent line
+                    //first question set complete 
+                    if (pb_GameProgression.Value == 48)
+                    {
+                        swapQuestions();
+                    }
+                    //game finished
+                    else if (pb_GameProgression.Value == 96)
+                    {
+                        onWin();
+                    }
+                }
+
+            }
+
+            this.Invalidate(); // Redraw the line
+            intersectedPanel = null;
+        }
+        #endregion
+
         /// <summary>
         /// loads the alternated questions where the descriptions are now the call numbers 
         /// and the questions are now the categories
@@ -203,131 +268,78 @@ namespace PROG7312_POE_PART1.UserControls
             mediaPlayer.Instance.WinGameSoundEffect();
         }
         /// <summary>
-        /// mouse up event that checks if the user has answered the question correctly
+        /// checks if the user has hovered over a target panel
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void descriptionPanel_MouseUp(object sender, MouseEventArgs e)
+        private Panel CheckIntersectsWithTargetPanels(Point mousePosition)
         {
-            // Deactivate dragging
-            isDragging = false;
-
-            // Calculate the end point based on the mouse position when the mouse is released
-            endPoint = this.PointToClient(Cursor.Position);
-
-            Panel intersectedPanel = CheckIntersectsWithTargetPanels(endPoint);
-
-            if (intersectedPanel == null)
+            foreach (var targetPanel in targetPanels)
             {
-                // Invalidate the control to erase the line.
-                this.Invalidate();
-            }
-            else
-            {
-                //getting panel label
-                Label label = intersectedPanel.Controls.OfType<Label>().FirstOrDefault();
-                string leftSideQuestion = label.Text;
-                label = activePanel.Controls.OfType<Label>().FirstOrDefault();
-                string rigthSideQuestion = label.Text;
-                KeyValuePair<string, string> question = new KeyValuePair<string, string>(leftSideQuestion, rigthSideQuestion);  
-                var isCorrect = checkAnswer(question);
-                if(isCorrect)
+                if (targetPanel.Bounds.Contains(mousePosition))
                 {
-                    addLine(intersectedPanel);   
-                    this.Invalidate(); // Draw the permanent line
-                    if(pb_GameProgression.Value == 48)
-                    {
-                        swapQuestions();
-                    }
-                    else if(pb_GameProgression.Value == 96)
-                    {
-                        onWin();
-                    }
+                    return targetPanel;
                 }
-                
             }
-
-            this.Invalidate(); // Redraw the line
-            intersectedPanel = null;
+            return null; // return null if the mouse does not intersect with any target panel
         }
-        /// <summary>
+                /// <summary>
         /// checks the users answer and if it is correct it will increase the alue of the progress bar
         /// </summary>
         /// <param name="answer"></param>
-        /// <returns></returns>
         private bool checkAnswer(KeyValuePair<string, string> answer) {
+            //getting the list of correct questions
             var correctQuestions = matchingGameObject.Instance.CorrectQuestions;
+            //key value pair for the question and answer the user has matched
             KeyValuePair<string, string> swapped = new KeyValuePair<string, string>(answer.Value, answer.Key);
+            //checking if the user input has been answered already
             if (correctQuestions.Contains(answer) || correctQuestions.Contains(swapped))
             {
+                //if its not already answered
                 if (!matchingGameObject.Instance.AlreadyAnsweredQuestions.Contains(answer) && !matchingGameObject.Instance.AlreadyAnsweredQuestions.Contains(swapped))
                 {
+                    //add it to the list of already answered quesions
                     matchingGameObject.Instance.AlreadyAnsweredQuestions.Add(answer.Key, answer.Value);
                     pb_GameProgression.Value += 12;
-                    swapped.Equals(null);
-                    correctQuestions = null;
                     return true;
                 }
+                //if it is a correct match but has not been answered alreadys
                 else
                 {
-                    swapped.Equals(null);
-                    correctQuestions = null;
                     return false;
                 }
             }
+            //is not a correct answer
             else
             {
-                swapped.Equals(null);
-                correctQuestions = null;
                 return false;
             }
         }
         /// <summary>
         /// on paint event that draws the lines
         /// </summary>
-        /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
             var rand = new Random();
             base.OnPaint(e);
-            using (Pen pen = new Pen(Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256)), 5))
+            using (Pen pen = new Pen(Color.White, 5))
             {
                 foreach (var line in drawnLines)
                 {
+                    //gets a randoming colour for each line
                     pen.Color = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
                     e.Graphics.DrawLine(pen, this.PointToClient(line.Item1), this.PointToClient(line.Item2));
                 }
 
                 if (isDragging)
                 {
+                    //gets a random colour for the line being drawn
+                    pen.Color = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
                     e.Graphics.DrawLine(pen, this.PointToClient(startPoint), this.PointToClient(endPoint));
                 }
             }
             rand = null;
         }
-        /// <summary>
-        /// starts the game and resets the game
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_StartGame_Click(object sender, EventArgs e)
-        {
-            gameStart = true;
-            resetGame();
-            startGame();
 
-        }
-        /// <summary>
-        /// takes the user back to the main menu and resets the game
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_OrderGame_Click(object sender, EventArgs e)
-        {
-            mediaPlayer.Instance.ButtonClickSoundEffect();
-            stopGame();
-            Toolbox.Instance.ParentForm.LoadMainMenu();
-        }
+        #region Gmae controls ( Stop,Start,Timer,Reset Lines)
         /// <summary>
         /// clears all the lines between the panels 
         /// </summary>
@@ -372,15 +384,7 @@ namespace PROG7312_POE_PART1.UserControls
             timer1.Enabled = false;
             resetGame();   
         }
-        /// <summary>
-        /// plays sound when you hover your mouse over a button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_MatchingGame_MouseHover(object sender, EventArgs e)
-        {
-            mediaPlayer.Instance.ButtonHoverSoundEffect();
-        }
+       
         /// <summary>
         /// Resets the game
         /// </summary>
@@ -394,5 +398,34 @@ namespace PROG7312_POE_PART1.UserControls
             fillTextBoxes(false);
             lb_GameTime.Text = "00:00:00";
         }
+        #endregion
+        #region Button Clicks and events
+        /// <summary>
+        /// plays sound when you hover your mouse over a button
+        /// </summary>
+        private void btn_MatchingGame_MouseHover(object sender, EventArgs e)
+        {
+            mediaPlayer.Instance.ButtonHoverSoundEffect();
+        }
+        /// <summary>
+        /// starts the game and resets the game
+        /// </summary>
+        private void btn_StartGame_Click(object sender, EventArgs e)
+        {
+            gameStart = true;
+            resetGame();
+            startGame();
+
+        }
+        /// <summary>
+        /// takes the user back to the main menu and resets the game
+        /// </summary>
+        private void btn_OrderGame_Click(object sender, EventArgs e)
+        {
+            mediaPlayer.Instance.ButtonClickSoundEffect();
+            stopGame();
+            Toolbox.Instance.ParentForm.LoadMainMenu();
+        }
+        #endregion
     }
 }

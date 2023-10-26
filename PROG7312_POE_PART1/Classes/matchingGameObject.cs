@@ -15,9 +15,17 @@ namespace PROG7312_POE_PART1.Classes
         {
             get { return instance; }
         }
-        
+        /// <summary>
+        /// holds all the dewey decimal categories || Key is value and value is the name of the category
+        /// </summary>
         public Dictionary<string, string> DeweyCategory { get => deweyCategory; set => deweyCategory = value; }
+        /// <summary>
+        /// tracks which questions in the game have already been answered
+        /// </summary>
         public Dictionary<string, string> AlreadyAnsweredQuestions { get => alreadyAnsweredQuestions; set => alreadyAnsweredQuestions = value; }
+        /// <summary>
+        /// tracks which questions are correct
+        /// </summary>
         public Dictionary<string, string> CorrectQuestions { get => correctQuestions; set => correctQuestions = value; }
 
         //holds the original locations of all the bottom panels so that they can be reset. The key value is the panel while the x,y co-ordinates of the panel are the value
