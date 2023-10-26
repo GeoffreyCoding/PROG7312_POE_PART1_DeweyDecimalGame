@@ -21,26 +21,33 @@ namespace PROG7312_POE_PART1.Classes
         /// getting the instance of the leaderboardTracker class
         /// </summary>
         public static leaderboardTracker Instance => instance;
+        private string matchingGameHighestScore;
+        public string MatchingGameHighestScore
+        {
+            get => matchingGameHighestScore;
+            set => matchingGameHighestScore = value;
+        }
         /// <summary>
         /// holds the users highest score that they ever achieved in the ordering game
         /// </summary>
-        private string highestScore;
+        private string orderingGameHighestScore;
+
         /// <summary>
         /// holds the top 5 scores that the user has ever been able to Achieve
         /// </summary>
-        private string[] scoresArray = new string[5];
+        private string[] orderingGameScoresArray = new string[5];
         /// <summary>
         /// getter and setter for the lowest score. This format was recommended by ReSharpe
         /// </summary>
         public string HighestScore
         {
-            get => highestScore;
-            set => highestScore = value;
+            get => orderingGameHighestScore;
+            set => orderingGameHighestScore = value;
         }
         /// <summary>
         /// setter for the scores array
         /// </summary>
-        public string[] ScoresArray => scoresArray;
+        public string[] ScoresArray => orderingGameScoresArray;
 
         #region Holds methods to add a users score to the scores array and replace their highest score
         /// <summary>
@@ -50,42 +57,60 @@ namespace PROG7312_POE_PART1.Classes
         /// <param name="score"></param>
         public void AddToScoresArray(string score)
         {
-            var temp = Array.IndexOf(scoresArray, null);
-            if (scoresArray[0] == null) 
-                scoresArray[0] = score;
+            var temp = Array.IndexOf(orderingGameScoresArray, null);
+            if (orderingGameScoresArray[0] == null) 
+                orderingGameScoresArray[0] = score;
             else if (temp != -1)
             {
-                scoresArray[temp] = score;
+                orderingGameScoresArray[temp] = score;
             }
-            else scoresArray[Array.IndexOf(scoresArray, scoresArray.Max())] = score;
+            else orderingGameScoresArray[Array.IndexOf(orderingGameScoresArray, orderingGameScoresArray.Max())] = score;
         }
         /// <summary>
         /// simple checks if the new score is higher than the currently stored highest score
         /// </summary>
         /// <param name="score"></param>
         /// <returns></returns>
-        public bool replaceHighestScore(string score)
+        public bool replaceOrderingGameHighestScore(string score)
         {
             //if the user has already played the game
-            if (highestScore == null)
+            if (orderingGameHighestScore == null)
             {
-                highestScore = score;
+                orderingGameHighestScore = score;
                 return true;
             }
             //checking if the old score is higher than the new score
-            else if (int.Parse(highestScore) > int.Parse(score))
+            else if (int.Parse(orderingGameHighestScore) > int.Parse(score))
             {
-                highestScore = score;
+                orderingGameHighestScore = score;
                 return true;
             }
             return false;
         }
-        /// <summary>
-        /// converts the users score back into a time variant "00:00:00"
-        /// </summary>
-        /// <param name="score"></param>
-        /// <returns></returns>
-        public string scoreToTime(string score)
+
+        public bool replaceMatchingGameHighestScore(string score)
+        {
+            //if the user has already played the game
+            if (MatchingGameHighestScore == null)
+            {
+                MatchingGameHighestScore = score;
+                return true;
+            }
+            //checking if the old score is higher than the new score
+            else if (int.Parse(MatchingGameHighestScore) > int.Parse(score))
+            {
+                MatchingGameHighestScore = score;
+                return true;
+            }
+            return false;
+        }
+
+            /// <summary>
+            /// converts the users score back into a time variant "00:00:00"
+            /// </summary>
+            /// <param name="score"></param>
+            /// <returns></returns>
+            public string scoreToTime(string score)
         {
             if (score != null)
             {
@@ -106,7 +131,7 @@ namespace PROG7312_POE_PART1.Classes
             string[] trueScore = currentScore.Split(':');
             currentScore = trueScore[0] + trueScore[1] + trueScore[2];
             leaderboardTracker.Instance.AddToScoresArray(currentScore);
-            leaderboardTracker.Instance.replaceHighestScore(currentScore);
+            leaderboardTracker.Instance.replaceOrderingGameHighestScore(currentScore);
 
         }
         #endregion

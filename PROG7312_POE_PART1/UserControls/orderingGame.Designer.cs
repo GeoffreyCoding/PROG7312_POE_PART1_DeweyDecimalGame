@@ -702,7 +702,7 @@
             this.btn_PlayAgain.Click += new System.EventHandler(this.btn_PlayAgain_Click);
             this.btn_PlayAgain.MouseHover += new System.EventHandler(this.btn_OrderGame_MouseHover);
             // 
-            // orderingGame
+            // replaceOrderingGameHighestScore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -737,7 +737,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximumSize = new System.Drawing.Size(1335, 631);
             this.MinimumSize = new System.Drawing.Size(1335, 631);
-            this.Name = "orderingGame";
+            this.Name = "replaceOrderingGameHighestScore";
             this.Size = new System.Drawing.Size(1335, 631);
             this.pn_TopBook1.ResumeLayout(false);
             this.pn_TopBook1.PerformLayout();

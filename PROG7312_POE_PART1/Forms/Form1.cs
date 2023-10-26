@@ -42,7 +42,7 @@ namespace PROG7312_POE_PART1
             leaderboard1.Visible = false;
             achievementPage1.Visible = false;
             loadingScreen1.Dispose();
-            orderingGame1.Visible = true;
+            matchingGame1.Visible = true;
         }
 
         public void LoadLeaderboard()
@@ -75,6 +75,9 @@ namespace PROG7312_POE_PART1
             achievementPage1.Dispose();
             mainMenu1.Dispose();
             leaderboard1.Dispose();
+            matchingGame1.Dispose();
+            confetti1.Dispose();
+            Dispose();
         }
     }
 }

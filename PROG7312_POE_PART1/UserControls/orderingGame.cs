@@ -37,8 +37,9 @@ namespace PROG7312_POE_PART1.UserControls
         /// </summary>
         public orderingGame()
         {
-            InitializeComponent();
+            InitializeComponent(); 
             Task.Run(InitializeComponents);
+            this.DoubleBuffered = true;
         }
         /// <summary>
         /// calls the methods that initalize the game, this includes filling the list of panel lists alongside initializing the timer and
