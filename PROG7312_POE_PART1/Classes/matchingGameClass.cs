@@ -30,11 +30,11 @@ namespace PROG7312_POE_PART1.Classes
             deweyCategory.Add("200", "Religion");
             deweyCategory.Add("300", "Social Sciences");
             deweyCategory.Add("400", "Language");
-            deweyCategory.Add("500", "Natural Sciences and Mathematics");
+            deweyCategory.Add("500", "Natural Sciences/Math");
             deweyCategory.Add("600", "Technology");
-            deweyCategory.Add("700", "Arts and Recreation");
+            deweyCategory.Add("700", "Arts/Recreation");
             deweyCategory.Add("800", "Literature");
-            deweyCategory.Add("900", "History and Geography");
+            deweyCategory.Add("900", "History/Geography");
             matchingGameObject.Instance.DeweyCategory = deweyCategory;
             deweyCategory = null;
         }
