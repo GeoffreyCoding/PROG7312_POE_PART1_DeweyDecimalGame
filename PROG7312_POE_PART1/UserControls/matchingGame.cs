@@ -257,16 +257,17 @@ namespace PROG7312_POE_PART1.UserControls
         /// </summary>
         private void onWin()
         {
-            stopGame();
-
             var tempArray = lb_GameTime.Text.Split(':');
             var gameScore = tempArray[0] + tempArray[1] + tempArray[2];
             leaderboardTracker.Instance.replaceMatchingGameHighestScore(gameScore);
+            stopGame();
+            lb_GameTime.Text = "00:00:00";
             tempArray = null;
             gameScore = null;
             Toolbox.Instance.ParentForm.VisibleConfetti();
             mediaPlayer.Instance.WinGameSoundEffect();
         }
+        #region Game utilities to check intersection and answer
         /// <summary>
         /// checks if the user has hovered over a target panel
         /// </summary>
@@ -313,6 +314,7 @@ namespace PROG7312_POE_PART1.UserControls
                 return false;
             }
         }
+        #endregion
         /// <summary>
         /// on paint event that draws the lines
         /// </summary>
@@ -390,11 +392,20 @@ namespace PROG7312_POE_PART1.UserControls
         /// </summary>
         private void resetGame()
         {
-            lb_FastestTime.Text = leaderboardTracker.Instance.scoreToTime(leaderboardTracker.Instance.MatchingGameHighestScore);
+            lb_FastestTime.Text = leaderboardTracker.Instance.MatchingGameHighestScore;
+            if(lb_FastestTime.Text == "" || lb_FastestTime.Text == null)
+            {
+                lb_FastestTime.Text = "000000";           
+            }
+            //resetting progress bar
             pb_GameProgression.Value = 0;
+            //clearing already answered questions
             matchingGameObject.Instance.AlreadyAnsweredQuestions.Clear();
+            //clearing all correct questions
             matchingGameObject.Instance.CorrectQuestions.Clear();
+            //resetting all drawn lines
             ResetLines();
+            //alternating questions
             fillTextBoxes(false);
             lb_GameTime.Text = "00:00:00";
         }
