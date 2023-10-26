@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace PROG7312_POE_PART1.UserControls
@@ -43,10 +44,8 @@ namespace PROG7312_POE_PART1.UserControls
         {
             FillTargetPanels();
             FillDescriptionPanels();
-            matchingGameClass matchingGameClass = new matchingGameClass();
-            matchingGameClass.fillDeweyCategories();
-            matchingGameClass = null;
-            fillTextBoxes();
+            matchingGameClass.Instance.fillDeweyCategories();
+            fillTextBoxes(false);
             InitializeTimer();
         }
         /// <summary>
@@ -79,10 +78,9 @@ namespace PROG7312_POE_PART1.UserControls
         /// <summary>
         /// Fills the questions with numbers and the descriptions with the categories
         /// </summary>
-        private void fillTextBoxes()
-        {
-            matchingGameClass matchingGameClass = new matchingGameClass();            
-            Dictionary<string,string> gameQuestions = matchingGameClass.getRandomQuestionsAndAnswers(7);
+        private void fillTextBoxes(bool alternateQuestions)
+        {          
+            Dictionary<string,string> gameQuestions = matchingGameClass.Instance.getRandomQuestionsAndAnswers(7);
             Label txtLabels = null;
             List<int> randomNumberList = new List<int>();
 
@@ -92,62 +90,39 @@ namespace PROG7312_POE_PART1.UserControls
                 {
                     var txtQuestions = gameQuestions.ElementAt(questions);
                     txtLabels = targetPanels[questions].Controls.OfType<Label>().FirstOrDefault();
-                    txtLabels.Text = txtQuestions.Key;
+                    if (alternateQuestions == false)
+                    {
+                        txtLabels.Text = txtQuestions.Key;
+                    }
+                    else
+                    {
+                        txtLabels.Text = txtQuestions.Value;
+                    }
+                    
                     matchingGameObject.Instance.CorrectQuestions.Add(txtQuestions.Key, txtQuestions.Value);
                 }
             }
 
             if (gameQuestions.Count >= 7)
             {
-                randomNumberList = matchingGameClass.getRandomNumberList();
+                randomNumberList = matchingGameClass.Instance.getRandomNumberList();
                 for (int questions = 0; questions < 7; questions++)
                 {
                     var txtQuestions = gameQuestions.ElementAt(randomNumberList[questions]);
                     txtLabels = descriptionPanels[questions].Controls.OfType<Label>().FirstOrDefault();
-                    txtLabels.Text = txtQuestions.Value;
+                    if (alternateQuestions == true)
+                    {
+                        txtLabels.Text = txtQuestions.Key;
+                    }
+                    else
+                    {
+                        txtLabels.Text = txtQuestions.Value;
+                    }
                 }
             }
             randomNumberList = null;
             gameQuestions = null;
             txtLabels = null;
-            matchingGameClass = null;
-        }
-
-        
-        /// <summary>
-        /// ALternates the questions to having the numbers as descriptions and the categories as the questions
-        /// </summary>
-        private void alternateQuestions()
-        {
-            matchingGameClass matchingGameClass = new matchingGameClass();
-            Dictionary<string, string> gameQuestions = matchingGameClass.getRandomQuestionsAndAnswers(7);
-            Label txtLabels = null;
-            List<int> randomNumberList = new List<int>();
-            if (gameQuestions.Count >= 4)
-            {
-                for (int questions = 0; questions < 4; questions++)
-                {
-                    var txtQuestions = gameQuestions.ElementAt(questions);
-                    txtLabels = targetPanels[questions].Controls.OfType<Label>().FirstOrDefault();
-                    txtLabels.Text = txtQuestions.Value;
-                    matchingGameObject.Instance.CorrectQuestions.Add(txtQuestions.Key, txtQuestions.Value);
-                }
-            }
-
-            if (gameQuestions.Count >= 7)
-            {
-                randomNumberList = matchingGameClass.getRandomNumberList();
-                for (int questions = 0; questions < 7; questions++)
-                {
-                    var txtQuestions = gameQuestions.ElementAt(randomNumberList[questions]);
-                    txtLabels = descriptionPanels[questions].Controls.OfType<Label>().FirstOrDefault();
-                    txtLabels.Text = txtQuestions.Key;
-                }
-            }
-            randomNumberList = null;
-            gameQuestions = null;
-            txtLabels = null;
-            matchingGameClass = null;
         }
         /// <summary>
         /// event detects when the user clicks on a panel
@@ -192,6 +167,42 @@ namespace PROG7312_POE_PART1.UserControls
             }
         }
         /// <summary>
+        /// loads the alternated questions where the descriptions are now the call numbers 
+        /// and the questions are now the categories
+        /// </summary>
+        private void swapQuestions()
+        {
+            matchingGameObject.Instance.AlreadyAnsweredQuestions.Clear();
+            matchingGameObject.Instance.CorrectQuestions.Clear();
+            ResetLines();
+            fillTextBoxes(true);
+        }
+        /// <summary>
+        /// adds a line to the array, that will get drawn by the onPaint event
+        /// </summary>
+        /// <param name="intersectedPanel"></param>
+        private void addLine(Panel intersectedPanel)
+        {
+            // Set endPoint to the center of the intersectedPanel
+            endPoint = intersectedPanel.PointToScreen(new Point(intersectedPanel.Width / 2, intersectedPanel.Height / 2));
+            drawnLines.Add((startPoint, endPoint)); // Store the permanent line
+        }
+        /// <summary>
+        /// loads the winning screen and resets the game
+        /// </summary>
+        private void onWin()
+        {
+            stopGame();
+
+            var tempArray = lb_GameTime.Text.Split(':');
+            var gameScore = tempArray[0] + tempArray[1] + tempArray[2];
+            leaderboardTracker.Instance.replaceMatchingGameHighestScore(gameScore);
+            tempArray = null;
+            gameScore = null;
+            Toolbox.Instance.ParentForm.VisibleConfetti();
+            mediaPlayer.Instance.WinGameSoundEffect();
+        }
+        /// <summary>
         /// mouse up event that checks if the user has answered the question correctly
         /// </summary>
         /// <param name="sender"></param>
@@ -222,27 +233,15 @@ namespace PROG7312_POE_PART1.UserControls
                 var isCorrect = checkAnswer(question);
                 if(isCorrect)
                 {
-                    // Set endPoint to the center of the intersectedPanel
-                    endPoint = intersectedPanel.PointToScreen(new Point(intersectedPanel.Width / 2, intersectedPanel.Height / 2));
-                    drawnLines.Add((startPoint, endPoint)); // Store the permanent line
+                    addLine(intersectedPanel);   
                     this.Invalidate(); // Draw the permanent line
                     if(pb_GameProgression.Value == 48)
                     {
-                        matchingGameObject.Instance.AlreadyAnsweredQuestions.Clear();
-                        matchingGameObject.Instance.CorrectQuestions.Clear();
-                        ResetLines();
-                        alternateQuestions();
+                        swapQuestions();
                     }
                     else if(pb_GameProgression.Value == 96)
                     {
-                        stopGame();
-                        Toolbox.Instance.ParentForm.VisibleConfetti();
-                        mediaPlayer.Instance.WinGameSoundEffect();
-                        var tempArray = lb_GameTime.Text.Split(':');
-                        var gameScore = tempArray[1] + tempArray[2] + tempArray[3];
-                        leaderboardTracker.Instance.replaceMatchingGameHighestScore(gameScore);
-                        tempArray = null;
-                        gameScore = null;
+                        onWin();
                     }
                 }
                 
@@ -295,6 +294,7 @@ namespace PROG7312_POE_PART1.UserControls
             {
                 foreach (var line in drawnLines)
                 {
+                    pen.Color = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
                     e.Graphics.DrawLine(pen, this.PointToClient(line.Item1), this.PointToClient(line.Item2));
                 }
 
@@ -357,6 +357,7 @@ namespace PROG7312_POE_PART1.UserControls
         /// </summary>
         private void startGame()
         {
+            timer1.Enabled = true;
             timer1.Start();
             stopwatch.Start();
         }
@@ -368,6 +369,7 @@ namespace PROG7312_POE_PART1.UserControls
             gameStart = false;
             stopwatch.Stop();
             timer1.Stop();
+            timer1.Enabled = false;
             resetGame();   
         }
         /// <summary>
@@ -389,7 +391,7 @@ namespace PROG7312_POE_PART1.UserControls
             matchingGameObject.Instance.AlreadyAnsweredQuestions.Clear();
             matchingGameObject.Instance.CorrectQuestions.Clear();
             ResetLines();
-            fillTextBoxes();
+            fillTextBoxes(false);
             lb_GameTime.Text = "00:00:00";
         }
     }

@@ -9,6 +9,11 @@ namespace PROG7312_POE_PART1.Classes
 {
     internal class matchingGameClass
     {
+        private static readonly Lazy<matchingGameClass> _Instance = new Lazy<matchingGameClass>(() => new matchingGameClass());
+        public static matchingGameClass Instance
+        {
+            get { return _Instance.Value; }
+        }
         /// <summary>
         /// fills the dictionary with the questions and answers that are used in the matching game
         /// this includes the incorrect questions and answers
