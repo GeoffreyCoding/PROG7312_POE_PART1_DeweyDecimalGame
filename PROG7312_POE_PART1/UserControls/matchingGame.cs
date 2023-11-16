@@ -326,19 +326,19 @@ namespace PROG7312_POE_PART1.UserControls
         {
             var rand = new Random();
             base.OnPaint(e);
-            using (Pen pen = new Pen(Color.White, 5))
+            using (Pen pen = new Pen(System.Drawing.Color.White, 5))
             {
                 foreach (var line in drawnLines)
                 {
                     //gets a randoming colour for each line
-                    pen.Color = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
+                    pen.Color = System.Drawing.Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
                     e.Graphics.DrawLine(pen, this.PointToClient(line.Item1), this.PointToClient(line.Item2));
                 }
 
                 if (isDragging)
                 {
                     //gets a random colour for the line being drawn
-                    pen.Color = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
+                    pen.Color = System.Drawing.Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
                     e.Graphics.DrawLine(pen, this.PointToClient(startPoint), this.PointToClient(endPoint));
                 }
             }

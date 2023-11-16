@@ -29,14 +29,25 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.findingCallNumbers1 = new PROG7312_POE_PART1.UserControls.findingCallNumbers();
             this.confetti1 = new PROG7312_POE_PART1.UserControls.Confetti();
             this.loadingScreen1 = new PROG7312_POE_PART1.UserControls.loadingScreen();
             this.achievementPage1 = new PROG7312_POE_PART1.UserControls.AchievementPage();
             this.leaderboard1 = new PROG7312_POE_PART1.UserControls.Leaderboard();
             this.orderingGame1 = new PROG7312_POE_PART1.UserControls.orderingGame();
             this.mainMenu1 = new PROG7312_POE_PART1.UserControls.mainMenu();
-            this.matchingGame1 = new PROG7312_POE_PART1.UserControls.matchingGame();
             this.SuspendLayout();
+            // 
+            // findingCallNumbers1
+            // 
+            this.findingCallNumbers1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("findingCallNumbers1.BackgroundImage")));
+            this.findingCallNumbers1.Location = new System.Drawing.Point(0, 0);
+            this.findingCallNumbers1.MaximumSize = new System.Drawing.Size(1335, 631);
+            this.findingCallNumbers1.MinimumSize = new System.Drawing.Size(1335, 631);
+            this.findingCallNumbers1.Name = "findingCallNumbers1";
+            this.findingCallNumbers1.Size = new System.Drawing.Size(1335, 631);
+            this.findingCallNumbers1.TabIndex = 6;
+            this.findingCallNumbers1.Visible = false;
             // 
             // confetti1
             // 
@@ -109,25 +120,13 @@
             this.mainMenu1.Size = new System.Drawing.Size(1335, 631);
             this.mainMenu1.TabIndex = 0;
             // 
-            // matchingGame1
-            // 
-            this.matchingGame1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("matchingGame1.BackgroundImage")));
-            this.matchingGame1.Location = new System.Drawing.Point(-3, 0);
-            this.matchingGame1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.matchingGame1.MaximumSize = new System.Drawing.Size(1335, 631);
-            this.matchingGame1.MinimumSize = new System.Drawing.Size(1335, 631);
-            this.matchingGame1.Name = "matchingGame1";
-            this.matchingGame1.Size = new System.Drawing.Size(1335, 631);
-            this.matchingGame1.TabIndex = 6;
-            this.matchingGame1.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1311, 617);
-            this.Controls.Add(this.matchingGame1);
+            this.Controls.Add(this.findingCallNumbers1);
             this.Controls.Add(this.confetti1);
             this.Controls.Add(this.loadingScreen1);
             this.Controls.Add(this.achievementPage1);
@@ -154,6 +153,7 @@
         private UserControls.loadingScreen loadingScreen1;
         private UserControls.Confetti confetti1;
         private UserControls.matchingGame matchingGame1;
+        private UserControls.findingCallNumbers findingCallNumbers1;
     }
 }
 

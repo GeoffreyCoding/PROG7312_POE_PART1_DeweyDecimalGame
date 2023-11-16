@@ -22,6 +22,9 @@ namespace PROG7312_POE_PART1.Classes
         /// </summary>
         public static leaderboardTracker Instance => instance;
         private string matchingGameHighestScore;
+        private string findingNumberGameBestTime;
+        private string findingNumberGameHighestScore;
+
         public string MatchingGameHighestScore
         {
             get => matchingGameHighestScore;
@@ -48,6 +51,9 @@ namespace PROG7312_POE_PART1.Classes
         /// setter for the scores array
         /// </summary>
         public string[] ScoresArray => orderingGameScoresArray;
+
+        public string FindingNumberGameBestTime { get => findingNumberGameBestTime; set => findingNumberGameBestTime = value; }
+        public string FindingNumberGameHighestScore { get => findingNumberGameHighestScore; set => findingNumberGameHighestScore = value; }
 
         #region Holds methods to add a users score to the scores array and replace their highest score
         /// <summary>

@@ -62,6 +62,24 @@ namespace PROG7312_POE_PART1
             achievementPage1.LoadAchievments();
         }
 
+        public void LoadMatchingGame()
+        {
+            mainMenu1.Visible = false;
+            leaderboard1.Visible = false;
+            achievementPage1.Visible = false;
+            loadingScreen1.Dispose();
+            matchingGame1.Visible = true;
+        }
+
+        public void LoadFindingCallNumbers()
+        {
+            mainMenu1.Visible = false;
+            leaderboard1.Visible = false;
+            achievementPage1.Visible = false;
+            loadingScreen1.Dispose();
+            findingCallNumbers1.Visible = true;
+        }
+
         #endregion
 
         /// <summary>
@@ -71,12 +89,6 @@ namespace PROG7312_POE_PART1
         /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            orderingGame1.Dispose();
-            achievementPage1.Dispose();
-            mainMenu1.Dispose();
-            leaderboard1.Dispose();
-            matchingGame1.Dispose();
-            confetti1.Dispose();
             Dispose();
         }
     }

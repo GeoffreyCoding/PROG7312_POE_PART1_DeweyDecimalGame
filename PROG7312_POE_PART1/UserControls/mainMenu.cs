@@ -81,5 +81,17 @@ namespace PROG7312_POE_PART1.UserControls
                     break;
             }
         }
+
+        private void btn_FindCallNumbers_Click(object sender, EventArgs e)
+        {
+            soundAffectManager(2);
+            Toolbox.Instance.ParentForm.LoadFindingCallNumbers();
+        }
+
+        private void btn_MatchColumns_Click(object sender, EventArgs e)
+        {
+            soundAffectManager(2);
+            Toolbox.Instance.ParentForm.LoadMatchingGame();
+        }
     }
 }
