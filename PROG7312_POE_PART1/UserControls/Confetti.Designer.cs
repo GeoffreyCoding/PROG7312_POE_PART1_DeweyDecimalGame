@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pb_Confetti = new System.Windows.Forms.PictureBox();
             this.bt_Close = new System.Windows.Forms.Button();
             this.lb_YouWin = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pb_Confetti)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,5 +92,6 @@
         private System.Windows.Forms.PictureBox pb_Confetti;
         private System.Windows.Forms.Button bt_Close;
         private System.Windows.Forms.Label lb_YouWin;
+        private System.Windows.Forms.Timer timer1;
     }
 }

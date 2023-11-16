@@ -221,6 +221,12 @@
     <Compile Include="UserControls\loadingScreen.Designer.cs">
       <DependentUpon>loadingScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\loseGame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\loseGame.Designer.cs">
+      <DependentUpon>loseGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\mainMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -261,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\loadingScreen.resx">
       <DependentUpon>loadingScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\loseGame.resx">
+      <DependentUpon>loseGame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\mainMenu.resx">
       <DependentUpon>mainMenu.cs</DependentUpon>

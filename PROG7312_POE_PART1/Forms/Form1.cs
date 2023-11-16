@@ -36,6 +36,12 @@ namespace PROG7312_POE_PART1
             confetti1.Visible = true;
         }
 
+        public void VisibleLostGame()
+        {
+            loseGame1.BringToFront();
+            loseGame1.Visible = true;
+        }
+
         public void LoadOrderingGame()
         {
             mainMenu1.Visible = false;

@@ -36,6 +36,7 @@
             this.leaderboard1 = new PROG7312_POE_PART1.UserControls.Leaderboard();
             this.orderingGame1 = new PROG7312_POE_PART1.UserControls.orderingGame();
             this.mainMenu1 = new PROG7312_POE_PART1.UserControls.mainMenu();
+            this.loseGame1 = new PROG7312_POE_PART1.UserControls.loseGame();
             this.SuspendLayout();
             // 
             // findingCallNumbers1
@@ -120,12 +121,24 @@
             this.mainMenu1.Size = new System.Drawing.Size(1335, 631);
             this.mainMenu1.TabIndex = 0;
             // 
+            // loseGame1
+            // 
+            this.loseGame1.BackColor = System.Drawing.Color.Transparent;
+            this.loseGame1.Location = new System.Drawing.Point(0, 0);
+            this.loseGame1.MaximumSize = new System.Drawing.Size(1331, 613);
+            this.loseGame1.MinimumSize = new System.Drawing.Size(1331, 613);
+            this.loseGame1.Name = "loseGame1";
+            this.loseGame1.Size = new System.Drawing.Size(1331, 613);
+            this.loseGame1.TabIndex = 7;
+            this.loseGame1.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1311, 617);
+            this.Controls.Add(this.loseGame1);
             this.Controls.Add(this.findingCallNumbers1);
             this.Controls.Add(this.confetti1);
             this.Controls.Add(this.loadingScreen1);
@@ -154,6 +167,7 @@
         private UserControls.Confetti confetti1;
         private UserControls.matchingGame matchingGame1;
         private UserControls.findingCallNumbers findingCallNumbers1;
+        private UserControls.loseGame loseGame1;
     }
 }
 

@@ -115,6 +115,11 @@ namespace PROG7312_POE_PART1.Classes
         {
             await PlaySoundAsync("wongame_soundaffect.wav");
         }
+
+        public async Task loseGameSoundAffect()
+        {
+            await PlaySoundAsync("loseGameSoundAffect.wav");
+        }
         #endregion
     }
 }

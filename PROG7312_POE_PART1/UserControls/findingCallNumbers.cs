@@ -193,6 +193,7 @@ namespace PROG7312_POE_PART1.UserControls
                     leaderboardTracker.Instance.FindingNumberGameHighestScore = correctQuestions.ToString() + ";" + incorrectQuestions.ToString();
                     gameFinish();
                 }
+
             }
         }
 
@@ -205,7 +206,10 @@ namespace PROG7312_POE_PART1.UserControls
                 Toolbox.Instance.ParentForm.VisibleConfetti();
             }
             //lost the game
-
+            Toolbox.Instance.ParentForm.VisibleLostGame();
+            mediaPlayer.Instance.loseGameSoundAffect();
+            //reset the game to play again
+            resetGame();
         }
 
         private void checkCorrectAnswer(string description)
@@ -253,23 +257,28 @@ namespace PROG7312_POE_PART1.UserControls
         private void btn_OrderGame_Click(object sender, EventArgs e)
         {
             resetGame();
+            Toolbox.Instance.ParentForm.LoadMainMenu();
         }
 
         private void resetGame()
         {
-            var temp = leaderboardTracker.Instance.FindingNumberGameHighestScore;
-            if(temp != null)
-            {
-                var splitTemp = temp.Split(';');
-                lbl_RWScoreToBeat.Text = "Score to beat || Right : " + temp[0] + "| Wrong : " + temp[1];
-                
-            }
+            setHighestScore();
             currentLevel = 1;
             incorrectQuestions = 0;
             correctQuestions = 0;
             loadDataIntoPanels();
             gameStart = false;
             updateScore();
+        }
+
+        private void setHighestScore()
+        {
+            var temp = leaderboardTracker.Instance.FindingNumberGameHighestScore;
+            if (temp != null)
+            {
+                var splitTemp = temp.Split(';');
+                lbl_RWScoreToBeat.Text = "Score to beat || Right : " + temp[0] + "| Wrong : " + temp[1];
+            }
         }
 
         private void updateScore()
