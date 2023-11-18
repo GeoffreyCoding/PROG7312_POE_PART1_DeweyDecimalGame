@@ -1,6 +1,7 @@
 ﻿using PROG7312_POE_PART1.Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -19,30 +20,55 @@ namespace PROG7312_POE_PART1.UserControls
         private int currentLevel = 1;
         private int correctQuestions = 0;
         private int incorrectQuestions = 0;
+        private Stopwatch stopwatch = new Stopwatch();
         //top panels
         private readonly List<Panel> targetPanels = new List<Panel>();
+
+        #region game initialization
         public findingCallNumbers()
         {
+            //double bufferent to improve drag and drop feature
             this.DoubleBuffered = true;
+            //initialize components
             InitializeComponent();
+            //initializing the timer
+            InitializeTimer();
+            //loading the bottom panel location
             loadBottomPanelLocation();
+            //initializing the data structure
             initializeDeweyTreeDataStructure();
+            //filling the target panels
             FillTargetPanels();
+            //loading the data into the panels
             resetGame();
+
+
         }
 
+        /// <summary>
+        /// loading the location of the bottom panel
+        /// </summary>
         private void loadBottomPanelLocation()
         {
             int x = bottomPanel1.Location.X;
             int y = bottomPanel1.Location.Y;
             bottomPanelLocation = new Point(x, y);
         }
-
+        /// <summary>
+        /// starts the process of reading from the .csv file and then filling the AVL Black-Red tree
+        /// </summary>
         private void initializeDeweyTreeDataStructure()
         {
-            fileReader reader = new fileReader();
-            reader.getDeweyDecimalDataFromFile();
-            reader = null;
+            try
+            {
+                fileReader reader = new fileReader();
+                reader.getDeweyDecimalDataFromFile();
+                reader = null;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -59,7 +85,26 @@ namespace PROG7312_POE_PART1.UserControls
             activePanel = bottomPanel1;
             targetPanelArray = null;
         }
-
+        /// <summary>
+        /// Initializes the timer, this is only run once during the applications initial initialization
+        /// </summary>
+        private void InitializeTimer()
+        {
+            timer1.Interval = 1000;
+            timer1.Tick += Timer1_Tick;
+        }
+        /// <summary>
+        /// changes the time tracker label
+        /// </summary>
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            //tracks the time of the current game session
+            lb_GameTime.Text = stopwatch.Elapsed.ToString(@"hh\:mm\:ss");
+        }
+        #endregion
+        /// <summary>
+        /// reset the labels in the top panels
+        /// </summary>
         private void resetLabel()
         {
             lb_TopPanel1.Text = "";
@@ -69,47 +114,46 @@ namespace PROG7312_POE_PART1.UserControls
 
         }
 
+
+        /// <summary>
+        /// loads the data from the tree, back into the panels
+        /// </summary>
         private void loadDataIntoPanels()
         {
-            resetLabel();
-            findingCallNumberObject.Instance.CorrectAnswersList.Clear();
-            //-----------------------Filling top panels with correct answer-----------------------
-            //initializing the tree helper
-            findingCallNumberTreeHelper treeHelper = findingCallNumberObject.Instance.TreeHelper;
-            //getting the correct answer
-            var correctAnswer = treeHelper.GetRandomEntriesByLevel(3, 1).FirstOrDefault();
-            //filling the bottom panel with the correct answer
-            bottomPanel1.Controls.OfType<Label>().FirstOrDefault().Text = correctAnswer.description;
-            //filling the correct answers list
-            var correctAnswerlist = treeHelper.GetAllParents(correctAnswer);
-            //setting the correct answers list
-            findingCallNumberObject.Instance.CorrectAnswersList = correctAnswerlist;
-            //getting a random panel to fill with the correct answer
-            Random rand = new Random();
-            var randomPanel = targetPanels[rand.Next(0, 3)];
-            randomPanel.Controls.OfType<Label>().FirstOrDefault().Text = correctAnswerlist[currentLevel - 1].description;
-            //-----------------------Filling top panels with incorrect answers-----------------------
-            //getting incorrect answers
-            var incorrectAnswers = treeHelper.GetRandomEntriesByLevel(currentLevel, 3);
-            //used to cycle through each target panel
-            var index = 0;
-            //filling the target panels with the incorrect answers
-            foreach (var panel in targetPanels)
+            try
             {
-                var label = panel.Controls.OfType<Label>().FirstOrDefault();
-
-                if (label.Text == correctAnswerlist[currentLevel - 1].description)
+                resetLabel();
+                //findingCallNumberObject.Instance.CorrectAnswersList.Clear();
+                //-----------------------Filling top panels with correct answer-----------------------
+                //initializing the tree helper
+                findingCallNumberTreeHelper treeHelper = findingCallNumberObject.Instance.TreeHelper;
+                //getting the correct answer
+                var correctAnswer = findingCallNumberObject.Instance.CorrectAnswer;
+                //filling the correct answers list
+                var correctAnswerlist = findingCallNumberObject.Instance.CorrectAnswersList;
+                //filling the bottom panel with the correct answer
+                bottomPanel1.Controls.OfType<Label>().FirstOrDefault().Text = correctAnswer.description;
+                //setting the correct answers list
+                findingCallNumberObject.Instance.CorrectAnswersList = correctAnswerlist;
+                //-----------------------Filling top panels with incorrect answers-----------------------
+                //getting incorrect answers
+                var incorrectAnswers = treeHelper.GetIncorrectEntriesByLevel(currentLevel, 3);
+                incorrectAnswers.Add(correctAnswerlist[currentLevel - 1]);
+                incorrectAnswers.Sort((x, y) => x.data.CompareTo(y.data));
+                //used to cycle through each target panel
+                var index = 0;
+                //filling the target panels with the incorrect answers
+                foreach (var panel in targetPanels)
                 {
-
-                }
-                else
-                {
-                    label.Text = incorrectAnswers[index].description;
+                    var label = panel.Controls.OfType<Label>().FirstOrDefault();
+                    label.Text = incorrectAnswers[index].data.ToString() + " : " + incorrectAnswers[index].description;
                     index++;
+
                 }
             }
+            catch (Exception ex){ MessageBox.Show(ex.Message); }
         }
-
+        #region drag-and-drop mouse events
         /// <summary>
         /// Controls the initial click on a panel
         /// </summary>
@@ -166,6 +210,8 @@ namespace PROG7312_POE_PART1.UserControls
             if (matchedTargetPanel != null)
             {
                 var targetPanelDescription = matchedTargetPanel.Controls.OfType<Label>().FirstOrDefault().Text;
+                var temp = targetPanelDescription.ToString().Split(':');
+                targetPanelDescription = temp[1].Trim();
                 //checking for the correct answer
                 checkCorrectAnswer(targetPanelDescription);
                 //handling if user answer is correct/false
@@ -176,9 +222,14 @@ namespace PROG7312_POE_PART1.UserControls
             //resuming the layout now that the operation is complete
             this.ResumeLayout();
         }
+        #endregion
 
+        /// <summary>
+        /// handles the logic for when a user completes a questions
+        /// </summary>
         private void onQuestionComplete()
         {
+            //upating the score
             updateScore();
             if (currentLevel != 3)
             {
@@ -190,31 +241,41 @@ namespace PROG7312_POE_PART1.UserControls
                 //checking if the game is finished
                 if (incorrectQuestions + correctQuestions == 3)
                 {
+                    //formatting/storing their highest score
                     leaderboardTracker.Instance.FindingNumberGameHighestScore = correctQuestions.ToString() + ";" + incorrectQuestions.ToString();
                     gameFinish();
                 }
 
             }
         }
-
+        /// <summary>
+        /// Handles the game logic for when the game is finished
+        /// </summary>
         private void gameFinish()
         {
             //won the game
-            if (incorrectQuestions > correctQuestions)
+            if (correctQuestions > incorrectQuestions)
             {
                 mediaPlayer.Instance.WinGameSoundEffect();
                 Toolbox.Instance.ParentForm.VisibleConfetti();
             }
-            //lost the game
-            Toolbox.Instance.ParentForm.VisibleLostGame();
-            mediaPlayer.Instance.loseGameSoundAffect();
+            else
+            {
+
+            }
+            var temp = lb_GameTime.Text.Trim().Split(':');
+            var score = temp[0] + temp[1] + temp[2];
+            leaderboardTracker.Instance.replaceFindingCallNumberBestTime(score);
             //reset the game to play again
             resetGame();
         }
-
+        /// <summary>
+        /// checks the description of the target panel against the correct answer
+        /// </summary>
+        /// <param name="description"></param>
         private void checkCorrectAnswer(string description)
         {
-            
+
             var correctAnswerList = findingCallNumberObject.Instance.CorrectAnswersList;
             var correctDescription = correctAnswerList[currentLevel - 1].description;
 
@@ -222,11 +283,15 @@ namespace PROG7312_POE_PART1.UserControls
             {
                 //correct
                 correctQuestions++;
+                pb_GameProgression.Value += 33;
             }
             else
             {
-                //incorrect
-                incorrectQuestions++;
+                resetGame();
+                //lost the game
+                Toolbox.Instance.ParentForm.VisibleLostGame();
+                mediaPlayer.Instance.loseGameSoundAffect();
+
             }
         }
 
@@ -247,46 +312,106 @@ namespace PROG7312_POE_PART1.UserControls
             }
             return null;
         }
-
+        #region Button Clicks
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_StartGame_Click(object sender, EventArgs e)
         {
             resetGame();
             gameStart = true;
+            startTimer();
+            
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_OrderGame_Click(object sender, EventArgs e)
         {
-            resetGame();
             Toolbox.Instance.ParentForm.LoadMainMenu();
+            resetGame();
+            
         }
-
+        #endregion
+        /// <summary>
+        /// resets the entire game
+        /// </summary>
         private void resetGame()
         {
             setHighestScore();
             currentLevel = 1;
             incorrectQuestions = 0;
             correctQuestions = 0;
+            findingCallNumberClass.Instance.loadAnswers();
             loadDataIntoPanels();
             gameStart = false;
+            stopTime();
             updateScore();
+            lb_GameTime.Text = "00:00:00";
+            pb_GameProgression.Value = 0;
+            updateBestTime();
         }
+        #region timer and score
+        /// <summary>
+        /// start the game timer
+        /// </summary>
+        private void startTimer()
+        {
+            timer1.Enabled = true;
+            timer1.Start();
+            stopwatch.Start();
+        }
+        /// <summary>
+        /// stop the game timer
+        /// </summary>
+        private void stopTime()
+        {
+            timer1.Stop();
+            timer1.Enabled = false;
+            stopwatch.Reset();
+        }
+        private void updateBestTime()
+        {
+            var bestTime = leaderboardTracker.Instance.FindingNumberGameBestTime;
+            if (bestTime != null)
+            {
+                lb_FastestTime.Text = leaderboardTracker.Instance.FindingNumberGameBestTime;
 
+            }
+
+        }
+        /// <summary>
+        /// updates teh users score on the label
+        /// </summary>
         private void setHighestScore()
         {
             var temp = leaderboardTracker.Instance.FindingNumberGameHighestScore;
             if (temp != null)
             {
                 var splitTemp = temp.Split(';');
-                lbl_RWScoreToBeat.Text = "Score to beat || Right : " + temp[0] + "| Wrong : " + temp[1];
+                lbl_RWScoreToBeat.Text = "Score to beat || Right : " + temp[0].ToString() + "| Wrong : " + temp[1].ToString();
             }
         }
-
+       
+        /// <summary>
+        /// updates the users score
+        /// </summary>
         private void updateScore()
         {
-            lbCurrentScore.Text = "Score || Right : " + correctQuestions + "| Wrong : " + incorrectQuestions;
+            lbCurrentScore.Text = "Score || Right : " + correctQuestions.ToString() + "| Wrong : " + incorrectQuestions.ToString() ;
+        }
+        #endregion
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void lb_ScoreToBeat_Click(object sender, EventArgs e)
         {
 
         }

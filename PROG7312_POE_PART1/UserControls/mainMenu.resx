@@ -120,4 +120,11 @@
   <data name="rtb_OrderingGameHelp.Text" xml:space="preserve">
     <value>In the Ordering Game. You must order the panels in ascending order according to the dewey decimal system. Your goal is to do this in the fastest time possible. Unlike most games, in this game your goal is to achieve the lowest score possible.</value>
   </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>In this game your task is to find the corresponding 
+call number to the one shown in the bottom pane. 
+You must drag that number to the matching level 1
+and then matching level 2 option until level 3.
+</value>
+  </data>
 </root>

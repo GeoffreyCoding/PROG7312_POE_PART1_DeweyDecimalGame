@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 /*
  * ST10081932
  * Geoffrey Huth
@@ -64,7 +61,7 @@ namespace PROG7312_POE_PART1.Classes
         public void AddToScoresArray(string score)
         {
             var temp = Array.IndexOf(orderingGameScoresArray, null);
-            if (orderingGameScoresArray[0] == null) 
+            if (orderingGameScoresArray[0] == null)
                 orderingGameScoresArray[0] = score;
             else if (temp != -1)
             {
@@ -111,12 +108,29 @@ namespace PROG7312_POE_PART1.Classes
             return false;
         }
 
-            /// <summary>
-            /// converts the users score back into a time variant "00:00:00"
-            /// </summary>
-            /// <param name="score"></param>
-            /// <returns></returns>
-            public string scoreToTime(string score)
+        public bool replaceFindingCallNumberBestTime(string score)
+        {
+            //if the user has already played the game
+            if (findingNumberGameBestTime == null)
+            {
+                findingNumberGameBestTime = score;
+                return true;
+            }
+            //checking if the old score is higher than the new score
+            else if (int.Parse(findingNumberGameBestTime) > int.Parse(score))
+            {
+                findingNumberGameBestTime = score;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// converts the users score back into a time variant "00:00:00"
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
+        public string scoreToTime(string score)
         {
             if (score != null)
             {

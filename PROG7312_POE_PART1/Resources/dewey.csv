@@ -1,4 +1,4 @@
-000;Computer science, information & general works;1
+0;Computer science, information & general works;1
 100;Philosophy & psychology;1
 200;Religion;1
 300;Social sciences;1
@@ -8,15 +8,15 @@
 700;Arts & recreation;1
 800;Literature;1
 900;History & geography;1
-000;Computer science, knowledge & systems;2
-010;Bibliographies;2
-020;Library & information sciences;2
-030;Encyclopedias & books of facts;2
-050;Magazines, journals & serials;2
-060;Associations, organizations & museums;2
-070;News media, journalism & publishing;2
-080;Quotations;2
-090;Manuscripts & rare books;2
+0;Computer science, information & general works;2
+10;Bibliographies;2
+20;Library & information sciences;2
+30;Encyclopedias & books of facts;2
+50;Magazines, journals & serials;2
+60;Associations, organizations & museums;2
+70;News media, journalism & publishing;2
+80;Quotations;2
+90;Manuscripts & rare books;2
 100;Philosophy;2
 110;Metaphysics;2
 120;Epistemology;2
@@ -107,90 +107,90 @@
 970;History of North America;2
 980;History of South America;2
 990;History of other areas;2
-000;Computer science, information & general works;3
-001;Knowledge;3
-002;The book;3
-003;Systems;3
-004;Data processing & computer science;3
-005;Computer programming, programs & data;3
-006;Special computer methods;3
-010;Bibliography;3
-011;Bibliographies;3
-012;Bibliographies of individuals;3
-014;Bibliographies of anonymous & pseudonymous works;3
-015;Bibliographies of works from specific places;3
-016;Bibliographies of works on specific subjects;3
-017;General subject catalogs;3
-018;Catalogs arranged by author, date, etc.;3
-019;Dictionary catalogs;3
-020;Library & information sciences;3
-021;Library relationships;3
-022;Administration of physical plant;3
-023;Personnel management;3
-025;Library operations;3
-026;Libraries for specific subjects;3
-027;General libraries;3
-028;Reading & use of other information media;3
-030;General encyclopedic works;3
-031;Encyclopedias in American English;3
-032;Encyclopedias in English;3
-033;Encyclopedias in other Germanic languages;3
-034;Encyclopedias in French, Occitan & Catalan;3
-035;Encyclopedias in Italian, Romanian & related languages;3
-036;Encyclopedias in Spanish & Portuguese;3
-037;Encyclopedias in Slavic languages;3
-038;Encyclopedias in Scandinavian languages;3
-039;Encyclopedias in other languages;3
-050;General serial publications;3
-051;Serials in American English;3
-052;Serials in English;3
-053;Serials in other Germanic languages;3
-054;Serials in French, Occitan & Catalan;3
-055;Serials in Italian, Romanian & related languages;3
-056;Serials in Spanish & Portuguese;3
-057;Serials in Slavic languages;3
-058;Serials in Scandinavian languages;3
-059;Serials in other languages;3
-060;General organizations & museum science;3
-061;Organizations in North America;3
-062;"Organizations in British Isles; in England";3
-063;"Organizations in central Europe; in Germany";3
-064;Organizations in France & Monaco;3
-065;Organizations in Italy & adjacent islands;3
-066;Organizations in Iberian Peninsula & adjacent islands;3
-067;"Organizations in eastern Europe; in Russia";3
-068;Organizations in other geographic areas;3
-069;Museum science;3
-070;News media, journalism & publishing;3
-071;Newspapers in North America;3
-072;"Newspapers in British Isles; in England";3
-073;"Newspapers in central Europe; in Germany";3
-074;Newspapers in France & Monaco;3
-075;Newspapers in Italy & adjacent islands;3
-076;Newspapers in Iberian Peninsula & adjacent islands;3
-077;"Newspapers in eastern Europe; in Russia";3
-078;Newspapers in Scandinavia;3
-079;Newspapers in other geographic areas;3
-080;General collections;3
-081;Collections in American English;3
-082;Collections in English;3
-083;Collections in other Germanic languages;3
-084;Collections in French, Occitan & Catalan;3
-085;Collections in Italian, Romanian & related languages;3
-086;Collections in Spanish & Portuguese;3
-087;Collections in Slavic languages;3
-088;Collections in Scandinavian languages;3
-089;Collections in other languages;3
-090;Manuscripts & rare books;3
-091;Manuscripts;3
-092;Block books;3
-093;Incunabula;3
-094;Printed books;3
-095;Books notable for bindings;3
-096;Books notable for illustrations;3
-097;Books notable for ownership or origin;3
-098;Prohibited works, forgeries & hoaxes;3
-099;Books notable for format;3
+0;Computer science, information & general works;3
+1;Knowledge;3
+2;The book;3
+3;Systems;3
+4;Data processing & computer science;3
+5;Computer programming, programs & data;3
+6;Special computer methods;3
+10;Bibliography;3
+11;Bibliographies;3
+12;Bibliographies of individuals;3
+14;Bibliographies of anonymous & pseudonymous works;3
+15;Bibliographies of works from specific places;3
+16;Bibliographies of works on specific subjects;3
+17;General subject catalogs;3
+18;Catalogs arranged by author, date, etc.;3
+19;Dictionary catalogs;3
+20;Library & information sciences;3
+21;Library relationships;3
+22;Administration of physical plant;3
+23;Personnel management;3
+25;Library operations;3
+26;Libraries for specific subjects;3
+27;General libraries;3
+28;Reading & use of other information media;3
+30;General encyclopedic works;3
+31;Encyclopedias in American English;3
+32;Encyclopedias in English;3
+33;Encyclopedias in other Germanic languages;3
+34;Encyclopedias in French, Occitan & Catalan;3
+35;Encyclopedias in Italian, Romanian & related languages;3
+36;Encyclopedias in Spanish & Portuguese;3
+37;Encyclopedias in Slavic languages;3
+38;Encyclopedias in Scandinavian languages;3
+39;Encyclopedias in other languages;3
+50;Magazines, journals & serials;3
+51;Serials in American English;3
+52;Serials in English;3
+53;Serials in other Germanic languages;3
+54;Serials in French, Occitan & Catalan;3
+55;Serials in Italian, Romanian & related languages;3
+56;Serials in Spanish & Portuguese;3
+57;Serials in Slavic languages;3
+58;Serials in Scandinavian languages;3
+59;Serials in other languages;3
+60;General organizations & museum science;3
+61;Organizations in North America;3
+62;"Organizations in British Isles; in England";3
+63;"Organizations in central Europe; in Germany";3
+64;Organizations in France & Monaco;3
+65;Organizations in Italy & adjacent islands;3
+66;Organizations in Iberian Peninsula & adjacent islands;3
+67;"Organizations in eastern Europe; in Russia";3
+68;Organizations in other geographic areas;3
+69;Museum science;3
+70;News media, journalism & publishing;3
+71;Newspapers in North America;3
+72;"Newspapers in British Isles; in England";3
+73;"Newspapers in central Europe; in Germany";3
+74;Newspapers in France & Monaco;3
+75;Newspapers in Italy & adjacent islands;3
+76;Newspapers in Iberian Peninsula & adjacent islands;3
+77;"Newspapers in eastern Europe; in Russia";3
+78;Newspapers in Scandinavia;3
+79;Newspapers in other geographic areas;3
+80;General collections;3
+81;Collections in American English;3
+82;Collections in English;3
+83;Collections in other Germanic languages;3
+84;Collections in French, Occitan & Catalan;3
+85;Collections in Italian, Romanian & related languages;3
+86;Collections in Spanish & Portuguese;3
+87;Collections in Slavic languages;3
+88;Collections in Scandinavian languages;3
+89;Collections in other languages;3
+90;Manuscripts & rare books;3
+91;Manuscripts;3
+92;Block books;3
+93;Incunabula;3
+94;Printed books;3
+95;Books notable for bindings;3
+96;Books notable for illustrations;3
+97;Books notable for ownership or origin;3
+98;Prohibited works, forgeries & hoaxes;3
+99;Books notable for format;3
 100;Philosophy & psychology;3
 101;Theory of philosophy;3
 102;Miscellany;3
@@ -544,7 +544,7 @@
 497;North American native languages;3
 498;South American native languages;3
 499;Austronesian & other languages;3
-500;Natural sciences & mathematics;3
+500;Science;3
 501;Philosophy & theory;3
 502;Miscellany;3
 503;Dictionaries & encyclopedias;3

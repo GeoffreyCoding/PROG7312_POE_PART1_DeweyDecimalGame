@@ -28,6 +28,7 @@ namespace PROG7312_POE_PART1
             leaderboard1.Visible = false;
             achievementPage1.Visible = false;
             mainMenu1.Visible = true;
+            findingCallNumbers1.Visible = false;
         }
 
         public void VisibleConfetti()
@@ -48,7 +49,8 @@ namespace PROG7312_POE_PART1
             leaderboard1.Visible = false;
             achievementPage1.Visible = false;
             loadingScreen1.Dispose();
-            matchingGame1.Visible = true;
+            matchingGame2.Visible = true;
+            findingCallNumbers1.Visible = false;
         }
 
         public void LoadLeaderboard()
@@ -57,6 +59,7 @@ namespace PROG7312_POE_PART1
             orderingGame1.Visible = false;
             achievementPage1.Visible = false;
             leaderboard1.Visible = true;
+            findingCallNumbers1.Visible = false;
         }
 
         public void LoadAcheivementsPage()
@@ -66,6 +69,7 @@ namespace PROG7312_POE_PART1
             leaderboard1.Visible = false;
             achievementPage1.Visible = true;
             achievementPage1.LoadAchievments();
+            findingCallNumbers1.Visible = false;
         }
 
         public void LoadMatchingGame()
@@ -74,15 +78,17 @@ namespace PROG7312_POE_PART1
             leaderboard1.Visible = false;
             achievementPage1.Visible = false;
             loadingScreen1.Dispose();
-            matchingGame1.Visible = true;
+            matchingGame2.Visible = true;
+            findingCallNumbers1.Visible = false;
         }
 
         public void LoadFindingCallNumbers()
         {
+            loadingScreen1.Dispose();
             mainMenu1.Visible = false;
             leaderboard1.Visible = false;
             achievementPage1.Visible = false;
-            loadingScreen1.Dispose();
+            matchingGame2.Visible = false;
             findingCallNumbers1.Visible = true;
         }
 

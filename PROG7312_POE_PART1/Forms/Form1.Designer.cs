@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.loseGame1 = new PROG7312_POE_PART1.UserControls.loseGame();
             this.findingCallNumbers1 = new PROG7312_POE_PART1.UserControls.findingCallNumbers();
             this.confetti1 = new PROG7312_POE_PART1.UserControls.Confetti();
             this.loadingScreen1 = new PROG7312_POE_PART1.UserControls.loadingScreen();
@@ -36,8 +37,19 @@
             this.leaderboard1 = new PROG7312_POE_PART1.UserControls.Leaderboard();
             this.orderingGame1 = new PROG7312_POE_PART1.UserControls.orderingGame();
             this.mainMenu1 = new PROG7312_POE_PART1.UserControls.mainMenu();
-            this.loseGame1 = new PROG7312_POE_PART1.UserControls.loseGame();
+            this.matchingGame2 = new PROG7312_POE_PART1.UserControls.matchingGame();
             this.SuspendLayout();
+            // 
+            // loseGame1
+            // 
+            this.loseGame1.BackColor = System.Drawing.Color.Transparent;
+            this.loseGame1.Location = new System.Drawing.Point(0, 0);
+            this.loseGame1.MaximumSize = new System.Drawing.Size(1331, 613);
+            this.loseGame1.MinimumSize = new System.Drawing.Size(1331, 613);
+            this.loseGame1.Name = "loseGame1";
+            this.loseGame1.Size = new System.Drawing.Size(1331, 613);
+            this.loseGame1.TabIndex = 7;
+            this.loseGame1.Visible = false;
             // 
             // findingCallNumbers1
             // 
@@ -121,16 +133,17 @@
             this.mainMenu1.Size = new System.Drawing.Size(1335, 631);
             this.mainMenu1.TabIndex = 0;
             // 
-            // loseGame1
+            // matchingGame2
             // 
-            this.loseGame1.BackColor = System.Drawing.Color.Transparent;
-            this.loseGame1.Location = new System.Drawing.Point(0, 0);
-            this.loseGame1.MaximumSize = new System.Drawing.Size(1331, 613);
-            this.loseGame1.MinimumSize = new System.Drawing.Size(1331, 613);
-            this.loseGame1.Name = "loseGame1";
-            this.loseGame1.Size = new System.Drawing.Size(1331, 613);
-            this.loseGame1.TabIndex = 7;
-            this.loseGame1.Visible = false;
+            this.matchingGame2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("matchingGame2.BackgroundImage")));
+            this.matchingGame2.Location = new System.Drawing.Point(0, 0);
+            this.matchingGame2.Margin = new System.Windows.Forms.Padding(4);
+            this.matchingGame2.MaximumSize = new System.Drawing.Size(1335, 631);
+            this.matchingGame2.MinimumSize = new System.Drawing.Size(1335, 631);
+            this.matchingGame2.Name = "matchingGame2";
+            this.matchingGame2.Size = new System.Drawing.Size(1335, 631);
+            this.matchingGame2.TabIndex = 8;
+            this.matchingGame2.Visible = false;
             // 
             // Form1
             // 
@@ -138,6 +151,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1311, 617);
+            this.Controls.Add(this.matchingGame2);
             this.Controls.Add(this.loseGame1);
             this.Controls.Add(this.findingCallNumbers1);
             this.Controls.Add(this.confetti1);
@@ -168,6 +182,7 @@
         private UserControls.matchingGame matchingGame1;
         private UserControls.findingCallNumbers findingCallNumbers1;
         private UserControls.loseGame loseGame1;
+        private UserControls.matchingGame matchingGame2;
     }
 }
 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PROG7312_POE_PART1.Classes
 {
@@ -62,7 +60,7 @@ namespace PROG7312_POE_PART1.Classes
         public findingCallNumberTreeHelper()
         {
         }
-
+        #region Rotating data on the tree
         //-------------------------------------------------------------------------------------------------//
         /// <summary>
         /// Left Rotate
@@ -133,6 +131,7 @@ namespace PROG7312_POE_PART1.Classes
             X.right = Y;
             Y.parent = X;
         }
+        #endregion
 
         //-------------------------------------------------------------------------------------------------//
         /// <summary>
@@ -149,7 +148,7 @@ namespace PROG7312_POE_PART1.Classes
                 InOrderDisplay(root);
             }
         }
-
+        #region Basic tree functions Get, Find, Insert, Delete
         //-------------------------------------------------------------------------------------------------//
         /// <summary>
         /// Find item in the tree
@@ -491,6 +490,9 @@ namespace PROG7312_POE_PART1.Classes
                 return Y;
             }
         }
+        #endregion
+
+        #region getting data from the tree
         /// <summary>
         /// Gets all the entries linked to a specific level of the Dewey Decimal System and then randomly chooses 4, excluding those in correctAnswersList.
         /// </summary>
@@ -500,9 +502,9 @@ namespace PROG7312_POE_PART1.Classes
         public List<Node> GetRandomEntriesByLevel(int level, int count = 4)
         {
             List<Node> allEntries = new List<Node>();
+            //gets all the entries of the level
             GetAllEntriesByLevelHelper(root, level, allEntries);
             List<Node> randomEntries = new List<Node>();
-
             // Retrieve the list of correct answers to exclude them from random selection
             var correctAnswersList = findingCallNumberObject.Instance.CorrectAnswersList;
 
@@ -532,6 +534,152 @@ namespace PROG7312_POE_PART1.Classes
         }
 
         /// <summary>
+        /// Gets all the entries linked to a specific level of the Dewey Decimal System and then randomly chooses 4, excluding those in correctAnswersList.
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public List<Node> GetIncorrectEntriesByLevel(int level, int count = 3)
+        {
+            List<Node> allEntries = new List<Node>();
+            GetAllEntriesByLevelHelper(root, level, allEntries);
+            List<Node> randomEntries = new List<Node>();
+
+            // Retrieve the list of correct answers to exclude them from random selection
+            var correctAnswersList = findingCallNumberObject.Instance.CorrectAnswersList;
+
+            Random rnd = new Random();
+            int entriesCount = allEntries.Count;
+
+            // If there are not enough entries, return them all (excluding correct answers)
+            if (entriesCount <= count)
+            {
+                return allEntries.Except(correctAnswersList).ToList();
+            }
+
+            // Randomly select 'count' unique entries, excluding correct answers
+            while (randomEntries.Count < count)
+            {
+                int index = rnd.Next(entriesCount);
+                Node selectedEntry = allEntries[index];
+                
+
+                // Ensure the entry is not in the correct answers list and is unique in the randomEntries list
+                if (!correctAnswersList.Contains(selectedEntry) && !randomEntries.Contains(selectedEntry))
+                {
+                    var selectedEntryData = selectedEntry.data.ToString();
+                    var isTrue = false;
+                    if (correctAnswersList[2].data.ToString().Length == 3)
+                    {
+                        isTrue = isDivisible(selectedEntryData, level);
+                    }
+                    else
+                    {
+                        isTrue = true;
+                    }
+
+
+                    if (isTrue)
+                    {
+                        randomEntries.Add(selectedEntry);
+                    }
+                    
+                }
+            }
+
+            return randomEntries;
+        }
+        /// <summary>
+        /// ensures that the selected number is divisible by the correct answer in order to match the leveling system of the DDC system
+        /// </summary>
+        /// <param name="ddcNumber"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        private bool isDivisible(string ddcNumber, int level)
+        {
+            var correctAnswer = findingCallNumberObject.Instance.CorrectAnswer.data.ToString();
+            switch (level)
+            {
+                //level 1
+                case 1:
+                    if (ddcNumber.Length == 3)
+                    {
+                        //ensures only level 1 categories are selected
+                        var result = Convert.ToInt32(ddcNumber) / 100;
+                        //getting first digit of correct answer
+                        var element = ddcNumber.Substring(0,1);
+                        //converting to int
+                        var temp = Convert.ToInt32(element);
+                        //the number of times they are divided by 0 is the same as the first digit of the ddc number selected
+                        //e.g 100/100 = 1, 200/100 = 2, 300/100 = 3
+                        if (result == temp)
+                        {
+                            return true;
+                        }
+                       
+                    }
+                    break;
+                    //level 2
+                case 2:
+                    if (ddcNumber.Length >= 1)
+                    {
+                        //gets the first digit of the correct answer
+                        string firstDigitOfCorrectAnswer = correctAnswer.Substring(0, 1);
+                        //gets the first digit of the selected number
+                        string firstDigitOfDdcNumber = ddcNumber.Substring(0, 1);
+                        int ddcNumberInt = Convert.ToInt32(ddcNumber);
+                        // Check if divisible by 10 and results in a whole number. Also check if it is not divisible by 100 to ensure no level 1 categories are mixed in
+                        if (firstDigitOfDdcNumber == firstDigitOfCorrectAnswer && ddcNumberInt % 10 == 0 && ddcNumberInt % 100 != 0)
+                        {
+                            return true;
+                        }
+                    }
+                    break;
+                    //level 3
+                case 3:
+                    //if level == 3 and the length is < 3
+                    //this means that the correct answer is 000
+                    //all the numbers in level 2 and 3 for 000 are under 100
+                    if (Convert.ToInt32(correctAnswer) < 100)
+                    {
+                        if (Convert.ToInt32(ddcNumber) < 100)
+                        {
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        //category is anything except 000
+                        if (ddcNumber.Length ==3)
+                        {
+                            //getting the first 2 digits of the ddc number
+                            string firstDigitOfDdcNumber = ddcNumber.Substring(0, 2);
+                            //getting the first 2 digits of the correct answer
+                            string firstDigitOfCorrectAnswer = correctAnswer.Substring(0, 2);
+                            int ddcNumberInt = Convert.ToInt32(ddcNumber);
+                            // Check if divisible by 10 and results in a whole number. Also check if it is not divisible by 100 to ensure no level 1 categories are mixed in
+                            if (firstDigitOfDdcNumber == firstDigitOfCorrectAnswer && ddcNumberInt % 10 != 0 && ddcNumberInt % 100 != 0)
+                            {
+                                return true;
+                            }
+                        }
+                        //extra check incase 1 slipped through somehow???
+                        else
+                        {
+                            //if level == 3 and the length is < 3
+                            if(correctAnswer.Length != 3)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    break;
+            }
+            return false;
+        }
+        #endregion
+
+        /// <summary>
         /// gets all the entries linked to a specific level of the dewey decimal system
         /// </summary>
         /// <param name="current"></param>
@@ -550,6 +698,8 @@ namespace PROG7312_POE_PART1.Classes
             }
             GetAllEntriesByLevelHelper(current.right, level, allEntries);
         }
+
+        #region getting the parent of a level 3 node
         /// <summary>
         /// Returns all the parent nodes of a child node.
         /// </summary>
@@ -563,57 +713,83 @@ namespace PROG7312_POE_PART1.Classes
             }
 
             List<Node> parents = new List<Node>();
+            //gets the parents of the level 1 linked to the chid node
             Node level1Parent = FindLevel1Parent(childNode);
+            //gets the parents of th level 2 linked to the child node
             Node level2Parent = FindLevel2Parent(childNode);
-
+            //adding the level 1 parent to the list
             if (level1Parent != null) parents.Add(level1Parent);
+            //adding the level 2 parent to the list
             if (level2Parent != null) parents.Add(level2Parent);
+            //adding the level 3 node to the list
             parents.Add(childNode); // Add the level 3 node itself
-
             return parents;
         }
-
+        /// <summary>
+        /// Finds the level 1 parent of a given level 3 node
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         private Node FindLevel1Parent(Node node)
         {
+            //looks for a category with a mathing first digit
             int firstDigit = node.data / 100;
             return FindNodeByFirstDigit(root, firstDigit, 1);
         }
-
+        /// <summary>
+        /// Finds the level 2 parent of a given level 3 nodes
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         private Node FindLevel2Parent(Node node)
         {
+            //looks for a category with a mathing first 2 digits
             int firstTwoDigits = node.data / 10;
             return FindNodeByFirstTwoDigits(root, firstTwoDigits, 2);
         }
-
+        /// <summary>
+        /// searches till it finds the level 1 node
+        /// </summary>
+        /// <param name="currentNode"></param>
+        /// <param name="firstDigit"></param>
+        /// <param name="targetLevel"></param>
+        /// <returns></returns>
         private Node FindNodeByFirstDigit(Node currentNode, int firstDigit, int targetLevel)
         {
             if (currentNode == null) return null;
-
+            //finds the node with the same first digit and level
             if (currentNode.level == targetLevel && currentNode.data / 100 == firstDigit)
             {
                 return currentNode;
             }
-
+            //recursively calls itself to find the node
             Node leftResult = FindNodeByFirstDigit(currentNode.left, firstDigit, targetLevel);
             if (leftResult != null) return leftResult;
-
+            //recursively calls itself to find the node
             return FindNodeByFirstDigit(currentNode.right, firstDigit, targetLevel);
         }
-
+        /// <summary>
+        /// searches till it finds the level 2 node
+        /// </summary>
+        /// <param name="currentNode"></param>
+        /// <param name="firstTwoDigits"></param>
+        /// <param name="targetLevel"></param>
+        /// <returns></returns>
         private Node FindNodeByFirstTwoDigits(Node currentNode, int firstTwoDigits, int targetLevel)
         {
             if (currentNode == null) return null;
-
+            //finds the node with the same first 2 digits and level
             if (currentNode.level == targetLevel && currentNode.data / 10 == firstTwoDigits)
             {
                 return currentNode;
             }
-
+            //recursively calls itself to find the node
             Node leftResult = FindNodeByFirstTwoDigits(currentNode.left, firstTwoDigits, targetLevel);
             if (leftResult != null) return leftResult;
-
+            //recursively calls itself to find the node
             return FindNodeByFirstTwoDigits(currentNode.right, firstTwoDigits, targetLevel);
         }
+        #endregion
 
 
 

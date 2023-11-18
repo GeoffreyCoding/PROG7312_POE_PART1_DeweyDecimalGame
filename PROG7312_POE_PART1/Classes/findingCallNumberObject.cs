@@ -10,17 +10,21 @@ namespace PROG7312_POE_PART1.Classes
         private static readonly findingCallNumberObject instance = new findingCallNumberObject();
         public findingCallNumberTreeHelper TreeHelper { get; private set; }
 
-        private List<findingCallNumberTreeHelper.Node> correctAnswersList = new List<findingCallNumberTreeHelper.Node>(); 
+        private List<findingCallNumberTreeHelper.Node> correctAnswersList = new List<findingCallNumberTreeHelper.Node>();
+
+        private findingCallNumberTreeHelper.Node correctAnswer;
 
         private findingCallNumberObject()
         {
             TreeHelper = new findingCallNumberTreeHelper();
         }
 
+
         public static findingCallNumberObject Instance
         {
             get { return instance; }
         }
         public List<findingCallNumberTreeHelper.Node> CorrectAnswersList { get => correctAnswersList; set => correctAnswersList = value; }
+        internal findingCallNumberTreeHelper.Node CorrectAnswer { get => correctAnswer; set => correctAnswer = value; }
     }
 }
