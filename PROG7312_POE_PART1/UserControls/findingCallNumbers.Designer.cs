@@ -62,7 +62,7 @@
             this.topPanel1.Controls.Add(this.lb_TopPanel1);
             this.topPanel1.Location = new System.Drawing.Point(43, 128);
             this.topPanel1.Name = "topPanel1";
-            this.topPanel1.Size = new System.Drawing.Size(252, 73);
+            this.topPanel1.Size = new System.Drawing.Size(363, 73);
             this.topPanel1.TabIndex = 0;
             this.topPanel1.Tag = "target";
             // 
@@ -82,9 +82,9 @@
             // 
             this.topPanel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("topPanel2.BackgroundImage")));
             this.topPanel2.Controls.Add(this.lb_TopPanel2);
-            this.topPanel2.Location = new System.Drawing.Point(249, 247);
+            this.topPanel2.Location = new System.Drawing.Point(189, 247);
             this.topPanel2.Name = "topPanel2";
-            this.topPanel2.Size = new System.Drawing.Size(246, 73);
+            this.topPanel2.Size = new System.Drawing.Size(331, 73);
             this.topPanel2.TabIndex = 1;
             this.topPanel2.Tag = "target";
             // 
@@ -131,7 +131,7 @@
             this.topPanel3.Controls.Add(this.lb_TopPanel3);
             this.topPanel3.Location = new System.Drawing.Point(480, 129);
             this.topPanel3.Name = "topPanel3";
-            this.topPanel3.Size = new System.Drawing.Size(253, 73);
+            this.topPanel3.Size = new System.Drawing.Size(344, 73);
             this.topPanel3.TabIndex = 3;
             this.topPanel3.Tag = "target";
             // 
@@ -151,9 +151,9 @@
             // 
             this.topPanel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("topPanel4.BackgroundImage")));
             this.topPanel4.Controls.Add(this.lbTopPanel4);
-            this.topPanel4.Location = new System.Drawing.Point(680, 242);
+            this.topPanel4.Location = new System.Drawing.Point(652, 247);
             this.topPanel4.Name = "topPanel4";
-            this.topPanel4.Size = new System.Drawing.Size(236, 73);
+            this.topPanel4.Size = new System.Drawing.Size(299, 73);
             this.topPanel4.TabIndex = 4;
             this.topPanel4.Tag = "target";
             // 
@@ -183,6 +183,7 @@
             this.btn_StartGame.Text = "Start Game!";
             this.btn_StartGame.UseVisualStyleBackColor = false;
             this.btn_StartGame.Click += new System.EventHandler(this.btn_StartGame_Click);
+            this.btn_StartGame.MouseHover += new System.EventHandler(this.btn_StartGame_MouseHover);
             // 
             // btn_OrderGame
             // 

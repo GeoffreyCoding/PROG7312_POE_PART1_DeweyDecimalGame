@@ -415,5 +415,10 @@ namespace PROG7312_POE_PART1.UserControls
         {
 
         }
+
+        private void btn_StartGame_MouseHover(object sender, EventArgs e)
+        {
+            mediaPlayer.Instance.ButtonHoverSoundEffect();
+        }
     }
 }

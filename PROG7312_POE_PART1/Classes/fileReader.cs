@@ -57,7 +57,8 @@ internal class fileReader
         }
         catch(Exception ex)
         {
-            MessageBox.Show(ex.Message);
+            MessageBox.Show("Error, while accessing or reading the dewey.csv file, please ensure it is in the bin/debug folder and is not currently in use " +
+                "by any other application and then restart the application! " + ex.Message);
             System.Environment.Exit(1);
         }
        

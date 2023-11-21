@@ -300,8 +300,8 @@ namespace PROG7312_POE_PART1.UserControls
         {
             timer1.Stop();
             resetGame();
-            Toolbox.Instance.ParentForm.LoadMainMenu();
             mediaPlayer.Instance.ButtonClickSoundEffect();
+            Toolbox.Instance.ParentForm.LoadMainMenu();
         }
         /// <summary>
         /// starts a new game session after reseting the entire game.

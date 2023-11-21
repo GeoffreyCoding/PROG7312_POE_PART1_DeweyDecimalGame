@@ -437,8 +437,8 @@ namespace PROG7312_POE_PART1.UserControls
         /// </summary>
         private void btn_OrderGame_Click(object sender, EventArgs e)
         {
-            mediaPlayer.Instance.ButtonClickSoundEffect();
             stopGame();
+            mediaPlayer.Instance.ButtonClickSoundEffect();
             Toolbox.Instance.ParentForm.LoadMainMenu();
         }
         #endregion
